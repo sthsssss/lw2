@@ -16,8 +16,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    boolean isStarted = false;
     int nums[] = new int[45];
+    TextView[] textViews = new TextView[45];
+    boolean[] isTextViewClicked = new boolean[45];
+    static int TextViewActiveCnt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                isStarted = true;
 
                 // 1 ~ 45까지의 중복되지 않은 숫자 6개
                 Random random = new Random();
@@ -40,25 +45,36 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-                // 숫자 정렬
-                Arrays.sort(nums);
             }
         });
 
-        TextView[] textViews = new TextView[45];
         for (int i = 0; i < textViews.length; i++) {
-            String textViewId = "textView" + (i + 1);
-            textViews[i] = findViewById(getResources().getIdentifier(textViewId, "id", getPackageName()));
+            int textViewId = getResources()
+                    .getIdentifier("textView"+ (i + 1),"id",getPackageName());
+            textViews[i] = findViewById(textViewId);
         }
 
-        for (TextView textViewId : textViews) {
-            textViewId.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < textViews.length; i++) {
+            textViews[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TextView result = findViewById(view.getId());
-                    Toast.makeText(MainActivity.this, "클릭 : " + result.getText().toString(), Toast.LENGTH_SHORT).show();
+                    int tempId = view.getId();
+                    String tempName = getResources().getResourceEntryName(tempId);
+                    int tempIndex =  Integer.parseInt(tempName.substring(8));
 
+                    if(!isTextViewClicked[tempIndex-1] && TextViewActiveCnt<6 && isStarted){
+                        isTextViewClicked[tempIndex-1] = true;
+                        ++TextViewActiveCnt;
+                        ((TextView) view).setBackgroundResource(R.drawable.card2_drawable);
+                        ((TextView) view).setText(nums[tempIndex-1] + "");
+                    }
+                    else if(isTextViewClicked[tempIndex-1]) {
+                        isTextViewClicked[tempIndex-1] = false;
+                        --TextViewActiveCnt;
+                    }
+                    else if (!isStarted) {
+                        Toast.makeText(getApplicationContext(), "시작 버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
