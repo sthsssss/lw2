@@ -34,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
                 isStarted = true;
 
+                for (int i  = 0; i < 45; i++) {
+                    textViews[i].setBackgroundResource(R.drawable.card_drawable);
+                    textViews[i].setText("");
+                    isTextViewClicked[i] = false;
+                }
+
+                TextViewActiveCnt = 0;
+
                 // 1 ~ 45까지의 중복되지 않은 숫자 6개
                 Random random = new Random();
 
@@ -62,18 +70,21 @@ public class MainActivity extends AppCompatActivity {
                     String tempName = getResources().getResourceEntryName(tempId);
                     int tempIndex =  Integer.parseInt(tempName.substring(8));
 
-                    if(!isTextViewClicked[tempIndex-1] && TextViewActiveCnt<6 && isStarted){
+                    if(!isTextViewClicked[tempIndex-1] && TextViewActiveCnt < 6 && isStarted){
                         isTextViewClicked[tempIndex-1] = true;
                         ++TextViewActiveCnt;
                         ((TextView) view).setBackgroundResource(R.drawable.card2_drawable);
                         ((TextView) view).setText(nums[tempIndex-1] + "");
                     }
                     else if(isTextViewClicked[tempIndex-1]) {
-                        isTextViewClicked[tempIndex-1] = false;
-                        --TextViewActiveCnt;
+                        Toast.makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
                     }
                     else if (!isStarted) {
-                        Toast.makeText(getApplicationContext(), "시작 버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "카드를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (TextViewActiveCnt >= 6) {
+                        Toast.makeText(getApplicationContext(), "6개 이상 선택하실 수 없습니다", Toast.LENGTH_SHORT).show();
+                        isStarted = false;
                     }
                 }
             });
