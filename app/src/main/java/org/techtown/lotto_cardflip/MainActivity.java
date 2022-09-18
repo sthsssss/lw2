@@ -2,16 +2,15 @@ package org.techtown.lotto_cardflip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.MediaPlayer;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 isStarted = true;
 
                 for (int i  = 0; i < 45; i++) {
-                    textViews[i].setBackgroundResource(R.drawable.card_drawable);
+                    textViews[i].setBackgroundResource(R.drawable.card);
                     textViews[i].setText("");
                     isTextViewClicked[i] = false;
                 }
@@ -70,11 +69,21 @@ public class MainActivity extends AppCompatActivity {
                     String tempName = getResources().getResourceEntryName(tempId);
                     int tempIndex =  Integer.parseInt(tempName.substring(8));
 
+                    AnimatorSet anim = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(), R.animator.flip);
+
                     if(!isTextViewClicked[tempIndex-1] && TextViewActiveCnt < 6 && isStarted){
                         isTextViewClicked[tempIndex-1] = true;
                         ++TextViewActiveCnt;
-                        ((TextView) view).setBackgroundResource(R.drawable.card2_drawable);
-                        ((TextView) view).setText(nums[tempIndex-1] + "");
+                        anim.setTarget((TextView)view);
+                        anim.start();
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                ((TextView) view).setBackgroundResource(R.drawable.card2);
+                                ((TextView) view).setText(nums[tempIndex-1] + "");
+                            }
+                        }, 1000);
                     }
                     else if(isTextViewClicked[tempIndex-1]) {
                         Toast.makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
