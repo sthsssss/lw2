@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView6;
 
     MediaPlayer mediaPlayer1;
+    MediaPlayer mediaPlayer2;
 
     Boolean clicked1 = false;
     Boolean clicked2 = false;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Boolean clicked6 = false;
 
     int nums[] = new int[6];
+
+    boolean isStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                isStarted = true;
+
                 // 룰렛 돌아가는 효과음
-                mediaPlayer1 = MediaPlayer.create(getApplicationContext(), R.raw.roulette_spinning);
+                mediaPlayer1 = MediaPlayer.create(getApplicationContext(), R.raw.roulette);
                 mediaPlayer1.setLooping(true);
                 mediaPlayer1.start();
 
@@ -80,10 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 // 숫자 정렬
                 Arrays.sort(nums);
 
-//                // 숫자 보여주기 (자동생성)
-//                for (int i=0; i<6; i++) {
-//                    textviewList[i].setText(nums[i]+"");
-//                }
             }
 
         });
@@ -91,90 +92,106 @@ public class MainActivity extends AppCompatActivity {
         textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView1.setText(nums[0]+"");
-                textView1.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked1 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView1.setText(nums[0]+"");
+                    textView1.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked1 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView2.setText(nums[1]+"");
-                textView2.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked2 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView2.setText(nums[1]+"");
+                    textView2.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked2 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView3.setText(nums[2]+"");
-                textView3.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked3 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView3.setText(nums[2]+"");
+                    textView3.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked3 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView4.setText(nums[3]+"");
-                textView4.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked4 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView4.setText(nums[3]+"");
+                    textView4.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked4 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView5.setText(nums[4]+"");
-                textView5.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked5 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView5.setText(nums[4]+"");
+                    textView5.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked5 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         textView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dingdong();
-                textView6.setText(nums[5]+"");
-                textView6.setBackgroundResource(R.drawable.roulette2_drawable);
-                clicked6 = true;
-                endOfRoulette();
+                if (isStarted) {
+                    dingdong();
+                    textView6.setText(nums[5]+"");
+                    textView6.setBackgroundResource(R.drawable.roulette2_drawable);
+                    clicked6 = true;
+                    endOfRoulette();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     // 룰렛 클릭 시 효과음
     public void dingdong() {
-        MediaPlayer mediaPlayer2 = MediaPlayer.create(getApplicationContext(), R.raw.dingdong);
+        mediaPlayer2 = MediaPlayer.create(getApplicationContext(), R.raw.dingdong);
         mediaPlayer2.start();
     }
 
     // 한번의 시도가 끝났을 때
     public void endOfRoulette() {
-        // 번호 분석 -> 토스트 메시지
-        int odd = 0;
-        int even = 0;
-        int sum = 0;
-
-        for (int num : nums) {
-            if (num % 2 == 0) { even++; }
-            else { odd++; }
-            sum += num;
-        }
-
-        Boolean allClicked = clicked1 && clicked2 && clicked3 && clicked4 && clicked5 && clicked6;
-
-        if (allClicked) {
+        mediaPlayer2.stop();
+        if (clicked1 && clicked2 && clicked3 && clicked4 && clicked5 & clicked6) {
             mediaPlayer1.stop();
-            mediaPlayer1.release();
-            Toast.makeText(getApplicationContext(), "홀짝 " + odd + " : " + even + " / 총합 " + sum, Toast.LENGTH_LONG).show();
         }
     }
 }

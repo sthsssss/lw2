@@ -27,7 +27,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette" />
+        android:background="@drawable/roulette_drawable" />
 
       <TextView
         android:id="@+id/textView2"
@@ -35,7 +35,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette" />
+        android:background="@drawable/roulette_drawable" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +49,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette"/>
+        android:background="@drawable/roulette_drawable"/>
 
       <TextView
         android:id="@+id/textView4"
@@ -57,7 +57,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette" />
+        android:background="@drawable/roulette_drawable" />
 
     </LinearLayout>
 
@@ -72,7 +72,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette"/>
+        android:background="@drawable/roulette_drawable"/>
 
       <TextView
         android:id="@+id/textView6"
@@ -80,7 +80,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette"/>
+        android:background="@drawable/roulette_drawable"/>
     </LinearLayout>
   </LinearLayout>
 
@@ -88,7 +88,7 @@
     android:id="@+id/button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="시작"
+    android:text="섞기"
     app:layout_constraintBottom_toTopOf="@+id/linearLayout"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
