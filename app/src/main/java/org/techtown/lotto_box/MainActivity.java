@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 // 숫자 지우기
                 for (TextView textView : textviewList) {
                     textView.setText("");
@@ -65,13 +67,26 @@ public class MainActivity extends AppCompatActivity {
                 Arrays.sort(nums);
 
                 //
-                dingdong();
+                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.box_anim);
 
-                //
-                for (int i=0; i<6; i++) {
-                    textviewList[i].setText(nums[i] + "\n");
-                    textviewList[i].setBackgroundResource(R.drawable.box_open);
+                for (TextView tv : textviewList) {
+                    tv.startAnimation(anim);
                 }
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        dingdong();
+
+                        for (int i = 0; i < textviewList.length; i++) {
+                            textviewList[i].setText(nums[i] + "\n");
+                            textviewList[i].setBackgroundResource(R.drawable.box_open);
+                        }
+
+                    }
+                }, 2500);
+
 
             }
         });
