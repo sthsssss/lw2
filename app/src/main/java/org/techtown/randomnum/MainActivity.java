@@ -2,9 +2,14 @@ package org.techtown.randomnum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 // 숫자 지우기
                 for (TextView textView : textViews) {
                     textView.setText("");
-                    textView.setBackgroundResource(R.drawable.roulette_drawable);
+                    textView.setBackgroundResource(R.drawable.roulette);
                 }
 
                 // Clicked 리셋
@@ -87,12 +92,20 @@ public class MainActivity extends AppCompatActivity {
                     String tempName = getResources().getResourceEntryName(tempId);
                     int tempIndex =  Integer.parseInt(tempName.substring(8));
 
+                    Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.spin);
+
                     if (isStarted) {
                         dingdong();
-                        ((TextView) view).setText(nums[tempIndex-1]+"");
-                        ((TextView) view).setBackgroundResource(R.drawable.roulette2_drawable);
-                        isTextViewClicked[tempIndex-1] = true;
-                        endOfRoulette();
+                        ((TextView) view).startAnimation(anim);
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                ((TextView) view).setText(nums[tempIndex-1]+"");
+                                isTextViewClicked[tempIndex-1] = true;
+                                endOfRoulette();
+                            }
+                        }, 2000);
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();

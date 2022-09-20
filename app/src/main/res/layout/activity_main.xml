@@ -27,7 +27,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable" />
+        android:background="@drawable/roulette" />
 
       <TextView
         android:id="@+id/textView2"
@@ -35,7 +35,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable" />
+        android:background="@drawable/roulette" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +49,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable"/>
+        android:background="@drawable/roulette"/>
 
       <TextView
         android:id="@+id/textView4"
@@ -57,7 +57,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable" />
+        android:background="@drawable/roulette" />
 
     </LinearLayout>
 
@@ -72,7 +72,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable"/>
+        android:background="@drawable/roulette"/>
 
       <TextView
         android:id="@+id/textView6"
@@ -80,7 +80,7 @@
         android:layout_height="150dp"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="38sp"
-        android:background="@drawable/roulette_drawable"/>
+        android:background="@drawable/roulette"/>
     </LinearLayout>
   </LinearLayout>
 
