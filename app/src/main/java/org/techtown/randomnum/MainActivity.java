@@ -14,40 +14,21 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView1;
-    TextView textView2;
-    TextView textView3;
-    TextView textView4;
-    TextView textView5;
-    TextView textView6;
-
-    MediaPlayer mediaPlayer1;
-    MediaPlayer mediaPlayer2;
-
-    Boolean clicked1 = false;
-    Boolean clicked2 = false;
-    Boolean clicked3 = false;
-    Boolean clicked4 = false;
-    Boolean clicked5 = false;
-    Boolean clicked6 = false;
+    boolean isStarted = false;
 
     int nums[] = new int[6];
 
-    boolean isStarted = false;
+    TextView[] textViews = new TextView[6];
+    boolean[] isTextViewClicked = new boolean[6];
+    boolean isAllTrue = true;
+
+    MediaPlayer mediaPlayer1;
+    MediaPlayer mediaPlayer2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        textView1 = findViewById(R.id.textView1);
-        textView2 = findViewById(R.id.textView2);
-        textView3 = findViewById(R.id.textView3);
-        textView4 = findViewById(R.id.textView4);
-        textView5 = findViewById(R.id.textView5);
-        textView6 = findViewById(R.id.textView6);
-
-        TextView textviewList[] = {textView1, textView2, textView3, textView4, textView5, textView6};
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -62,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer1.start();
 
                 // 숫자 지우기
-                for (TextView textView : textviewList) {
+                for (TextView textView : textViews) {
                     textView.setText("");
                     textView.setBackgroundResource(R.drawable.roulette_drawable);
                 }
 
                 // Clicked 리셋
-                clicked1 = false; clicked2 = false; clicked3 = false; clicked4 = false; clicked5 = false; clicked6 = false;
+                for (int i = 0; i < isTextViewClicked.length; i++) {
+                    isTextViewClicked[i] = false;
+                }
 
                 // 1 ~ 45까지의 중복되지 않은 숫자 6개
                 Random random = new Random();
@@ -89,96 +72,34 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        textView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView1.setText(nums[0]+"");
-                    textView1.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked1 = true;
-                    endOfRoulette();
+        for (int i = 0; i < textViews.length; i++) {
+            int textViewId = getResources()
+                    .getIdentifier("textView"+ (i + 1),"id",getPackageName());
+            textViews[i] = findViewById(textViewId);
+        }
+
+        for (int i = 0; i < textViews.length; i++) {
+            textViews[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int tempId = view.getId();
+                    String tempName = getResources().getResourceEntryName(tempId);
+                    int tempIndex =  Integer.parseInt(tempName.substring(8));
+
+                    if (isStarted) {
+                        dingdong();
+                        ((TextView) view).setText(nums[tempIndex-1]+"");
+                        ((TextView) view).setBackgroundResource(R.drawable.roulette2_drawable);
+                        isTextViewClicked[tempIndex-1] = true;
+                        endOfRoulette();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        textView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView2.setText(nums[1]+"");
-                    textView2.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked2 = true;
-                    endOfRoulette();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView3.setText(nums[2]+"");
-                    textView3.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked3 = true;
-                    endOfRoulette();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView4.setText(nums[3]+"");
-                    textView4.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked4 = true;
-                    endOfRoulette();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        textView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView5.setText(nums[4]+"");
-                    textView5.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked5 = true;
-                    endOfRoulette();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        textView6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isStarted) {
-                    dingdong();
-                    textView6.setText(nums[5]+"");
-                    textView6.setBackgroundResource(R.drawable.roulette2_drawable);
-                    clicked6 = true;
-                    endOfRoulette();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
     }
 
     // 룰렛 클릭 시 효과음
@@ -190,8 +111,18 @@ public class MainActivity extends AppCompatActivity {
     // 한번의 시도가 끝났을 때
     public void endOfRoulette() {
         mediaPlayer2.stop();
-        if (clicked1 && clicked2 && clicked3 && clicked4 && clicked5 & clicked6) {
+
+        isAllTrue = true;
+
+        for (int i = 0; i < isTextViewClicked.length; i++) {
+            if (isTextViewClicked[i] == false) {
+                isAllTrue = false;
+            }
+        }
+
+        if (isAllTrue) {
             mediaPlayer1.stop();
+            isStarted = false;
         }
     }
 }
