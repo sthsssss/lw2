@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_check_winning.xml" value="0.22780797101449277" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_intro.xml" value="0.36614583333333334" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_purchase_history.xml" value="0.33" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_qr_checking.xml" value="0.17291666666666666" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_self_input.xml" value="0.25" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_winning_history.xml" value="0.1875" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_winning_nums.xml" value="0.1875" />
+        <entry key="..\:/LottoWorld/app/src/main/res/layout/winning_num_item.xml" value="0.1875" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorldLaptopClone/app/src/main/res/layout/activity_self_input.xml" value="0.3079710144927536" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
