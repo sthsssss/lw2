@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Todo : 일단 예시로 1029 넣어둠 최신회차로 변경해야됨
         viewMatching();
-
+        setNumbersView();
         buttonIntentMatching();
     }
 
