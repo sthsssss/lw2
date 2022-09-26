@@ -3,6 +3,7 @@ package org.techtown.lotto_box;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
         textView6 = findViewById(R.id.textView6);
 
         TextView textviewList[] = {textView1, textView2, textView3, textView4, textView5, textView6};
+
+        Button analysisBtn = findViewById(R.id.analysisBtn);
+        analysisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numIntent = new Intent(getApplicationContext(), NumAnalysis.class);
+                numIntent.putExtra("numData", nums);
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
