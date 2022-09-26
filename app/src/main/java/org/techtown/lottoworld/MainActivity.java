@@ -1,5 +1,7 @@
 package org.techtown.lottoworld;
 
+import static org.techtown.lottoworld.IntroActivity.numberQueryList;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
     //Todo : 버튼 온클릭 이벤트 -> 액티비티 넘어가게끔
     // 최신회차 숫자
 
-    public int lottoRound_Latest = 1029;
-    // 최신회차 당첨번호 6개 배열 + 보너스넘버 1개
-    String[] winningNumbers_Main = new String[7];
-    JsonObject jsonObject;
-    RequestQueue requestQueue;
-
     // 넘버 텍스트뷰
     TextView latestWinningNumber_1,latestWinningNumber_2,latestWinningNumber_3,
     latestWinningNumber_4,latestWinningNumber_5,latestWinningNumber_6,latestWinningNumber_Bonus,roundMain;
@@ -50,48 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Todo : 일단 예시로 1029 넣어둠 최신회차로 변경해야됨
         viewMatching();
-        getLottoApi(Integer.toString(lottoRound_Latest));
+
         buttonIntentMatching();
     }
-
-
-    // Main 화면 Lotto Api 가져오는 함수
-    public void getLottoApi(String roundNumber){
-        Log.d("Taglog","we get into the getLottoApi function");
-        if(requestQueue == null){
-            requestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-        String[] winningNumber_ParsingIndex = {"drwtNo1","drwtNo2","drwtNo3","drwtNo4","drwtNo5","drwtNo6","bnusNo"};
-
-        String url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=" + roundNumber;
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                jsonObject = (JsonObject) JsonParser.parseString(response);
-                for (int i = 0; i < 7; i++) {
-                    winningNumbers_Main[i] = "" + jsonObject.get(winningNumber_ParsingIndex[i]);
-                    Log.d("Taglog",winningNumbers_Main[i]);
-                }
-                setNumbersView();
-            }
-        }, new Response.ErrorListener() {
-            // 에러처리
-            @Override
-            public void onErrorResponse(VolleyError error){
-                Log.d("Taglog","getLottoApi Error Occured");
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                return params;
-            }
-        };
-        request.setShouldCache(false);
-        requestQueue.add(request);
-    }
-
-
 
     // 메인화면 View 매칭
     public void viewMatching(){
@@ -112,14 +69,16 @@ public class MainActivity extends AppCompatActivity {
     // api로 가져온 번호를 뷰에 띄우기
     public void setNumbersView(){
         Log.d("Taglog","we get into the setNumbersView function");
-        latestWinningNumber_1.setText(winningNumbers_Main[0]);
-        latestWinningNumber_2.setText(winningNumbers_Main[1]);
-        latestWinningNumber_3.setText(winningNumbers_Main[2]);
-        latestWinningNumber_4.setText(winningNumbers_Main[3]);
-        latestWinningNumber_5.setText(winningNumbers_Main[4]);
-        latestWinningNumber_6.setText(winningNumbers_Main[5]);
-        latestWinningNumber_Bonus.setText(winningNumbers_Main[6]);
-        roundMain.setText("1029" + " 회차");
+        NumberQuery numberQuery = numberQueryList.get(0);
+        int nums[] = numberQuery.getNums();
+        latestWinningNumber_1.setText(nums[0]);
+        latestWinningNumber_2.setText(nums[1]);
+        latestWinningNumber_3.setText(nums[2]);
+        latestWinningNumber_4.setText(nums[3]);
+        latestWinningNumber_5.setText(nums[4]);
+        latestWinningNumber_6.setText(nums[5]);
+        latestWinningNumber_Bonus.setText(nums[6]);
+        roundMain.setText(numberQuery.getRound() + " 회차");
     }
 
     // button 액티비티 연결

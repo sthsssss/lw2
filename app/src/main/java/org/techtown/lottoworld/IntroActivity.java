@@ -97,7 +97,6 @@ public class IntroActivity extends AppCompatActivity {
 
     public void addlatestNums(){
 
-
         LatestRound round = null;
         {
             try {
@@ -108,7 +107,7 @@ public class IntroActivity extends AppCompatActivity {
         }
         int latestRound = round.getRound();
         Log.d("latestRound", Integer.toString(latestRound));
-        for(int i = latestInDB + 1 + 1; i <= latestRound; i++){
+        for(int i = latestInDB + 1; i <= latestRound; i++){
             getLottoApi(i);
         }
 
