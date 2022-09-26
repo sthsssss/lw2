@@ -98,7 +98,27 @@ public class DataAdapter
             throw mSQLException;
         }
     }
+    public void insertLastestNumber(NumberQuery wn){
+        mDb = mDbHelper.getWritableDatabase();
+        int[] nums = wn.getNums();
+        int round = wn.getRound();
+        String date = wn.getDate();
 
+        String query = "INSERT INTO tb_lotto_list"
+                + " (round, date, '1st', '2nd', '3rd', '4th', '5th', '6th', bonus) "
+                + " VALUES ( "
+                + round + ", "
+                + " '" + date + "', "
+                + nums[0] + ", "
+                + nums[1] + ", "
+                + nums[2] + ", "
+                + nums[3] + ", "
+                + nums[4] + ", "
+                + nums[5] + ", "
+                + nums[6] + "); ";
+        Log.d("insertLastestNumber" , query);
+        mDb.execSQL(query);
+    }
     public void insertWinningNum(String date, NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();
