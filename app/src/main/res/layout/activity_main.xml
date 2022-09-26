@@ -10,25 +10,27 @@
 
 
   <Button
-    android:id="@+id/excludeBtn"
+    android:id="@+id/includeBtn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:text="제외수"
+    android:backgroundTint="#4CAF50"
+    android:text="포함수"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.201"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
   <Button
-    android:id="@+id/includeBtn"
+    android:id="@+id/excludeBtn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:text="포함수"
+    android:backgroundTint="#3F51B5"
+    android:text="제외수"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.047"
-    app:layout_constraintStart_toEndOf="@+id/excludeBtn"
+    app:layout_constraintStart_toEndOf="@+id/includeBtn"
     app:layout_constraintTop_toTopOf="parent" />
 
   <Button
@@ -36,11 +38,25 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
+    android:backgroundTint="#9C27B0"
     android:text="뽑기"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.162"
-    app:layout_constraintStart_toEndOf="@+id/includeBtn"
+    app:layout_constraintStart_toEndOf="@+id/excludeBtn"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/analysisBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#9C27B0"
+    android:text="번호 분석"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/selfInputTable"
+    app:layout_constraintVertical_bias="0.75" />
 
   <androidx.constraintlayout.widget.Guideline
     android:id="@+id/guideline2"
@@ -735,25 +751,10 @@
   </TableLayout>
 
   <TextView
-    android:id="@+id/textView3"
-    android:layout_width="45dp"
-    android:layout_height="45dp"
-    android:layout_marginTop="56dp"
-    android:background="@drawable/round_view"
-    android:gravity="center_horizontal|center_vertical"
-    android:text=""
-    android:textColor="#000000"
-    android:textSize="30sp"
-    app:layout_constraintEnd_toStartOf="@+id/textView4"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toEndOf="@+id/textView2"
-    app:layout_constraintTop_toBottomOf="@+id/selfInputTable" />
-
-  <TextView
     android:id="@+id/textView5"
     android:layout_width="45dp"
     android:layout_height="45dp"
-    android:layout_marginTop="56dp"
+    android:layout_marginTop="44dp"
     android:background="@drawable/round_view"
     android:gravity="center_horizontal|center_vertical"
     android:text=""
@@ -765,25 +766,25 @@
     app:layout_constraintTop_toBottomOf="@+id/selfInputTable" />
 
   <TextView
-    android:id="@+id/textView2"
+    android:id="@+id/textView3"
     android:layout_width="45dp"
     android:layout_height="45dp"
-    android:layout_marginTop="56dp"
+    android:layout_marginTop="44dp"
     android:background="@drawable/round_view"
     android:gravity="center_horizontal|center_vertical"
     android:text=""
     android:textColor="#000000"
     android:textSize="30sp"
-    app:layout_constraintEnd_toStartOf="@+id/textView3"
+    app:layout_constraintEnd_toStartOf="@+id/textView4"
     app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toEndOf="@+id/textView1"
+    app:layout_constraintStart_toEndOf="@+id/textView2"
     app:layout_constraintTop_toBottomOf="@+id/selfInputTable" />
 
   <TextView
     android:id="@+id/textView1"
     android:layout_width="45dp"
     android:layout_height="45dp"
-    android:layout_marginTop="56dp"
+    android:layout_marginTop="44dp"
     android:background="@drawable/round_view"
     android:gravity="center_horizontal|center_vertical"
     android:text=""
@@ -798,7 +799,7 @@
     android:id="@+id/textView4"
     android:layout_width="45dp"
     android:layout_height="45dp"
-    android:layout_marginTop="56dp"
+    android:layout_marginTop="44dp"
     android:background="@drawable/round_view"
     android:gravity="center_horizontal|center_vertical"
     android:text=""
@@ -813,7 +814,7 @@
     android:id="@+id/textView6"
     android:layout_width="45dp"
     android:layout_height="45dp"
-    android:layout_marginTop="56dp"
+    android:layout_marginTop="44dp"
     android:background="@drawable/round_view"
     android:gravity="center_horizontal|center_vertical"
     android:text=""
@@ -822,6 +823,21 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toEndOf="@+id/textView5"
+    app:layout_constraintTop_toBottomOf="@+id/selfInputTable" />
+
+  <TextView
+    android:id="@+id/textView2"
+    android:layout_width="45dp"
+    android:layout_height="45dp"
+    android:layout_marginTop="44dp"
+    android:background="@drawable/round_view"
+    android:gravity="center_horizontal|center_vertical"
+    android:text=""
+    android:textColor="#000000"
+    android:textSize="30sp"
+    app:layout_constraintEnd_toStartOf="@+id/textView3"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/textView1"
     app:layout_constraintTop_toBottomOf="@+id/selfInputTable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

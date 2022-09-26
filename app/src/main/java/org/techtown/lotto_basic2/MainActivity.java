@@ -2,6 +2,7 @@ package org.techtown.lotto_basic2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textviewList[] = {textView1, textView2, textView3, textView4, textView5, textView6};
 
+        Button analysisBtn = findViewById(R.id.analysisBtn);
+        analysisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numIntent = new Intent(getApplicationContext(), NumAnalysis.class);
+                numIntent.putExtra("numData", nums);
+            }
+        });
+
         buttonSetting();
 
         // Include
@@ -69,11 +79,10 @@ public class MainActivity extends AppCompatActivity {
                     numList.clear();
 
                     for (int i = 1; i < 46; i++) {
-                        inputButtons[i].setBackgroundResource(R.drawable.selfinputbutton);
-                    }
-
-                    for (int i = 1; i < 46; i++) {
-                        isButtonClicked[i] = false;
+                        if (isButtonClicked[i] == true) {
+                            inputButtons[i].setBackgroundResource(R.drawable.selfinputbuttonclickedinclude);
+                            isButtonClicked[i] = false;
+                        }
                     }
 
                     Toast.makeText(getApplicationContext(), "포함수에 저장되었습니다", Toast.LENGTH_SHORT).show();
@@ -101,11 +110,10 @@ public class MainActivity extends AppCompatActivity {
                     numList.clear();
 
                     for (int i = 1; i < 46; i++) {
-                        inputButtons[i].setBackgroundResource(R.drawable.selfinputbutton);
-                    }
-
-                    for (int i = 1; i < 46; i++) {
-                        isButtonClicked[i] = false;
+                        if (isButtonClicked[i] == true) {
+                            inputButtons[i].setBackgroundResource(R.drawable.selfinputbuttonclickedexclude);
+                            isButtonClicked[i] = false;
+                        }
                     }
 
                     Toast.makeText(getApplicationContext(), "제외수에 저장되었습니다", Toast.LENGTH_SHORT).show();
@@ -166,6 +174,23 @@ public class MainActivity extends AppCompatActivity {
                         textviewList[i].setBackgroundResource(R.drawable.green);
                     }
                 }
+
+                for (int i = 1; i < 46; i++) {
+                    inputButtons[i].setBackgroundResource(R.drawable.selfinputbutton);
+                }
+
+                for (int i = 0; i < include.length; i++) {
+                    include[i] = 0;
+                }
+
+                for (int i = 0; i < exclude.length; i++) {
+                    exclude[i] = 0;
+                }
+
+                for (int i = 0; i < nums.length; i++) {
+                    nums[i] = 0;
+                }
+
             }
         });
 
