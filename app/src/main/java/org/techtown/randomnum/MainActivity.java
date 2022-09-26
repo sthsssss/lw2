@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 isTextViewClicked[tempIndex-1] = true;
                                 endOfRoulette();
                             }
-                        }, 2000);
+                        }, 1500);
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "숫자를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
