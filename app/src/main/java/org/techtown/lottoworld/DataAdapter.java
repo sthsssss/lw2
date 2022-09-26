@@ -49,13 +49,35 @@ public class DataAdapter
         mDbHelper.close();
     }
 
+    public int getLatestRound(){
+        try
+        {
+            mDb = mDbHelper.getReadableDatabase();
+            // Table 이름 -> antpool_bitcoin 불러오기
+            String sql ="SELECT round FROM " + TABLE_NAME + " ORDER BY round DESC limit 1";
+            int latestRound = 0;
+
+            Cursor mCur = mDb.rawQuery(sql, null);
+            if (mCur!=null)
+            {
+                mCur.moveToNext();
+                latestRound = mCur.getInt(0);
+            }
+            return latestRound;
+        }
+        catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+    }
     public List getWinningData()
     {
         try
         {
             mDb = mDbHelper.getReadableDatabase();
             // Table 이름 -> antpool_bitcoin 불러오기
-            String sql ="SELECT * FROM " + TABLE_NAME;
+            String sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY round DESC";
 
             // 모델 넣을 리스트 생성
             List winningList = new ArrayList();
@@ -98,6 +120,8 @@ public class DataAdapter
             throw mSQLException;
         }
     }
+
+    // api로 받아온 데이터를 insert 하는 함수
     public void insertLastestNumber(NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();

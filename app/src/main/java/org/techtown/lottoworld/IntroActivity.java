@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +32,7 @@ public class IntroActivity extends AppCompatActivity {
     int[] nums = new int[7];
     JsonObject jsonObject;
     RequestQueue requestQueue;
+    int latestInDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,11 @@ public class IntroActivity extends AppCompatActivity {
             public void run() {
                 //인트로를 보여준 후 intent 를 사용해서
                 //MainActivity 로 넘어가도록 함
-                loadDB();
+
+                latestInDB = loadDB();
+                addlatestNums();
+                getNumberQueryList();
+
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -58,34 +64,51 @@ public class IntroActivity extends AppCompatActivity {
         finish();
     }
 
-    public void loadDB(){
+    public int loadDB(){
+        int round = 0;
         try {
             DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
             mDbAdapter.open();
-            // db에 있는 값들을 model을 적용해서 넣는다.
-            numberQueryList = mDbAdapter.getWinningData();
-            Collections.reverse(numberQueryList);
-            // db 닫기
+            round = mDbAdapter.getLatestRound();
             mDbAdapter.close();
+            return round;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return round;
+    }
+    public int getNumberQueryList(){
+        int round = 0;
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
+
+            // db에 있는 값들을 model을 적용해서 넣는다.
+            numberQueryList = mDbAdapter.getWinningData();
+            // db 닫기
+            mDbAdapter.close();
+            Log.d("insertData", "성공함");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("insertData", "실패함");
+        }
+        return round;
     }
 
     public void addlatestNums(){
-/*
-        LastestRound round = null;
+
+
+        LatestRound round = null;
         {
             try {
-                round = new LastestRound();
+                round = new LatestRound();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
-        int lastestRound = round.getRound();
-
- */
-        for(int i = 1029; i <= 1031; i++){
+        int latestRound = round.getRound();
+        Log.d("latestRound", Integer.toString(latestRound));
+        for(int i = latestInDB + 1 + 1; i <= latestRound; i++){
             getLottoApi(i);
         }
 
@@ -97,7 +120,6 @@ public class IntroActivity extends AppCompatActivity {
 
             mDbAdapter.insertLastestNumber(nq);
 
-            // db 닫기
             mDbAdapter.close();
             Log.d("insertData", "성공함");
         } catch (SQLException e) {
