@@ -49,8 +49,7 @@ public class DataAdapter
         mDbHelper.close();
     }
 
-    public List getWinningData()
-    {
+    public List getWinningData() {
         try
         {
             mDb = mDbHelper.getReadableDatabase();
@@ -140,7 +139,20 @@ public class DataAdapter
         }
     }
 
-    
+    public void selectPurchaseHistory() {
+        if (mDb != null) {
+            String sqlQueryTbl = "SELECT * FROM CONTACT_T" ;
+            Cursor cursor = null ;
+
+            // 쿼리 실행
+            cursor = mDb.rawQuery(sqlQueryTbl, null) ;
+
+            if (cursor.moveToNext()) { // 레코드가 존재한다면,
+
+            }
+        }
+    }
+
     // NumberQuery를 이용해 순위를 반환하는 함수
     public int getRank(int gR_round,int[] nums){
         int rank = -1;
@@ -154,6 +166,7 @@ public class DataAdapter
 
         NumberQuery winningNumOngRround = numberQueryList.get(gR_round);
 
+        // TODO : 2등처리!!!!!!!
         while(i<7 && j<6){
             if(winningNumOngRround.nums[i] == nums[j]){
                 i++;
@@ -185,4 +198,5 @@ public class DataAdapter
         
         return rank;
     }
+
 }

@@ -13,12 +13,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class SelfInputActivity extends AppCompatActivity {
-    
+
     // Todo : local DB 에서 latest Round 를 가져온 후
     //  Self Input 에서 쓰게끔
     //  spinner에서 회차를 받아와야됨
@@ -27,6 +28,7 @@ public class SelfInputActivity extends AppCompatActivity {
 
     // Variable for Spinner UI
     int latestRound_Temporary = 1029;
+    int selected_Round;
     Button purchaseHistoryButton,saveNumbersButton;
     Spinner roundSpinner;
     ArrayList arrayList = new ArrayList<String>();
@@ -35,7 +37,7 @@ public class SelfInputActivity extends AppCompatActivity {
     // Variable for Button Events
     Button[] inputButtons = new Button[47];
     boolean[] isButtonClicked = new boolean[47];
-    static int buttonActiveCnt = 0;
+    int buttonActiveCnt = 0;
     TextView choosenBall1,choosenBall2,choosenBall3,choosenBall4,choosenBall5,choosenBall6;
     LinkedList<Integer> choosenBallList = new LinkedList<Integer>();
 
@@ -44,11 +46,16 @@ public class SelfInputActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        inputButtons = new Button[47];
+        isButtonClicked = new boolean[47];
+        choosenBallList = new LinkedList<Integer>();
+        buttonActiveCnt = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_self_input);
         choosenBallList.clear();
         // View Matching
         saveNumbersButton = findViewById(R.id.SaveTicketButton);
+        purchaseHistoryButton = findViewById(R.id.purchaseHistoryButton);
         roundSpinner = findViewById(R.id.roundSpinner);
         choosenBall1 = findViewById(R.id.choosenBall1);
         choosenBall2 = findViewById(R.id.choosenBall2);
@@ -59,13 +66,36 @@ public class SelfInputActivity extends AppCompatActivity {
 
         adapterSetting();
         buttonSetting();
+        saveNumbersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 선택된 번호쿼리가 6개로 가득 차야함
+                if(buttonActiveCnt == 6) {
+                    int[] temp = new int[7];
+                    for(int t=0; t<6; t++){
+                        temp[t] = (int)choosenBallList.get(t);
+                    }
+                    Log.d("saveNumbersButtonOnClicked",Integer.toString(selected_Round));
+                    NumberQuery nq = new NumberQuery(selected_Round,"2022",temp);
+                    saveSelfInput(nq);
+                } else{
+                    Log.d("saveNumbersButtonOnClicked","6개아님");
+                }
+
+            }
+        });
+        purchaseHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     // Function for Setting Spinner Adapter
     public void adapterSetting(){
-        // Todo : 일단 latest 없이 하드코딩
         for(int i=latestRound_Temporary;i>=1;i--){
-            arrayList.add(Integer.toString(i) + "회");
+            arrayList.add(Integer.toString(i));
         }
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
                 arrayList);
@@ -73,7 +103,7 @@ public class SelfInputActivity extends AppCompatActivity {
         roundSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                selected_Round =  Integer.valueOf((String)parent.getItemAtPosition(position));
             }
 
             @Override
@@ -86,9 +116,9 @@ public class SelfInputActivity extends AppCompatActivity {
     public void buttonSetting(){
         int tempResId;
         for(int i=1;i<=45;i++){
-             isButtonClicked[i] = false;
-             tempResId = getResources()
-                     .getIdentifier("button"+Integer.toString(i),"id",getPackageName());
+            isButtonClicked[i] = false;
+            tempResId = getResources()
+                    .getIdentifier("button"+Integer.toString(i),"id",getPackageName());
             inputButtons[i] = findViewById(tempResId);
         }
 
@@ -147,6 +177,17 @@ public class SelfInputActivity extends AppCompatActivity {
                     .getIdentifier(choosenBallfull,"id",getPackageName());
             TextView tmpView = findViewById(tmpId);
             tmpView.setText("");
+        }
+    }
+
+    public void saveSelfInput(NumberQuery nq){
+        try {
+            DataAdapter si_DbAdapter = new DataAdapter(getApplicationContext());
+            si_DbAdapter.open();
+            si_DbAdapter.insertPurchasedNum(nq);
+            si_DbAdapter.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

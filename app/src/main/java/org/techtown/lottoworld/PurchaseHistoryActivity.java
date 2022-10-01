@@ -1,6 +1,8 @@
 package org.techtown.lottoworld;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PurchaseHistoryActivity extends AppCompatActivity {
     DataBaseHelper mDBHelper;
@@ -20,27 +23,34 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_history);
+        ArrayList<String> list = new ArrayList<>();
+        for (int i=0; i<100; i++) {
+            list.add(String.format("TEXT %d", i)) ;
+        }
+
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter(list) ;
+        recyclerView.setAdapter(adapter) ;
 
 
-        Button imsi;
-        imsi = findViewById(R.id.buttonTemp);
-        imsi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                zxczxc(nq);
-            }
-        });
     }
-    public void zxczxc(NumberQuery nq){
+
+    public void selectData(){
         try {
             DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
             ph_DbAdapter.open();
-            ph_DbAdapter.insertPurchasedNum(nq);
+
             ph_DbAdapter.close();
-            Log.d("PurchaseHistoryActivity","button OnClicked");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    private void load_values() {
 
+
+    }
 }
