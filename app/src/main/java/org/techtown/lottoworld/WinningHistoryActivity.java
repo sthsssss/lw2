@@ -1,7 +1,5 @@
 package org.techtown.lottoworld;
 
-import static org.techtown.lottoworld.IntroActivity.numberQueryList;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +10,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class WinningHistoryActivity extends AppCompatActivity {
     int pages; // 전체 페이지 수
     int totalItem;
     int page = 0; // 현재 페이지
 
+    public static List<NumberQuery> numberQueryList;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -25,6 +27,8 @@ public class WinningHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_winning_history);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        getNumberQueryList();
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
@@ -61,6 +65,23 @@ public class WinningHistoryActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();}
             }
         });
+    }
+    public int getNumberQueryList(){
+        int round = 0;
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
+
+            // db에 있는 값들을 model을 적용해서 넣는다.
+            numberQueryList = mDbAdapter.getWinningData();
+            // db 닫기
+            mDbAdapter.close();
+            Log.d("insertData", "성공함");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("insertData", "실패함");
+        }
+        return round;
     }
 
     public void addNumItem(WinningNumAdapter adapter){

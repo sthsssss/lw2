@@ -1,6 +1,7 @@
 package org.techtown.lottoworld;
 
-import static org.techtown.lottoworld.IntroActivity.numberQueryList;
+
+import static org.techtown.lottoworld.WinningHistoryActivity.numberQueryList;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -80,7 +81,7 @@ public class DataAdapter
             String sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY round DESC";
 
             // 모델 넣을 리스트 생성
-            List winningList = new ArrayList();
+            List<NumberQuery> winningList = new ArrayList();
 
             // TODO : 모델 선언
             NumberQuery numberQuery = null;
@@ -112,6 +113,7 @@ public class DataAdapter
                 }
 
             }
+            Log.d("getwinningdata 메소드",Integer.toString(winningList.get(0).getRound()));
             return winningList;
         }
         catch (SQLException mSQLException)

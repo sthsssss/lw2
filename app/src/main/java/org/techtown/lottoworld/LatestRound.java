@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class LatestRound {
-    public static int round = 1029;
+    public static int round = 1028;
     public LatestRound() throws ParseException {
         round = calculateWeeks();
     }
@@ -14,7 +14,6 @@ public class LatestRound {
     public static int getRound() {
         return round;
     }
-
 
     public int calculateWeeks() throws ParseException {
         Calendar getToday = Calendar.getInstance();
@@ -27,8 +26,12 @@ public class LatestRound {
 
         long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
         long diffDays = diffSec / (24*60*60); //일자수 차이
+        long diffHours = diffSec % (60 * 60 * 24);
 
-        round = 1028 + (int) diffDays / 7;
-        return round;
+        int weeks = (int) diffDays / 7;
+        if(diffDays % 7 == 0 && diffHours <= 10){
+            weeks =- 1;
+        }
+        return weeks + 1028;
     }
 }
