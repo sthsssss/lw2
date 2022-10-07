@@ -14,10 +14,10 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
     private ArrayList<String> mData = null;
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolderforSticker extends RecyclerView.ViewHolder {
         TextView textView1;
 
-        ViewHolder(View itemView) {
+        ViewHolderforSticker(View itemView) {
             super(itemView);
 
             // 뷰 객체에 대한 참조. (hold strong reference)
@@ -25,6 +25,16 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         }
     }
 
+    public class ViewHolderforList extends RecyclerView.ViewHolder {
+        TextView textView1;
+
+        ViewHolderforList(View itemView) {
+            super(itemView);
+
+            // 뷰 객체에 대한 참조. (hold strong reference)
+            textView1 = itemView.findViewById(R.id.roundSticker);
+        }
+    }
     // 생성자에서 데이터 리스트 객체를 전달받음.
     PurchaseHistoryAdapter(ArrayList<String> list) {
         mData = list;
