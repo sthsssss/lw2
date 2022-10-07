@@ -78,10 +78,10 @@ public class DataAdapter
         {
             mDb = mDbHelper.getReadableDatabase();
             // Table 이름 -> antpool_bitcoin 불러오기
-            String sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY round DESC";
+            String sql ="SELECT * FROM " + TABLE_NAME;
 
             // 모델 넣을 리스트 생성
-            List<NumberQuery> winningList = new ArrayList();
+            List winningList = new ArrayList();
 
             // TODO : 모델 선언
             NumberQuery numberQuery = null;
@@ -113,7 +113,6 @@ public class DataAdapter
                 }
 
             }
-            Log.d("getwinningdata 메소드",Integer.toString(winningList.get(0).getRound()));
             return winningList;
         }
         catch (SQLException mSQLException)
@@ -123,28 +122,6 @@ public class DataAdapter
         }
     }
 
-    // api로 받아온 데이터를 insert 하는 함수
-    public void insertLastestNumber(NumberQuery wn){
-        mDb = mDbHelper.getWritableDatabase();
-        int[] nums = wn.getNums();
-        int round = wn.getRound();
-        String date = wn.getDate();
-
-        String query = "INSERT INTO tb_lotto_list"
-                + " (round, date, '1st', '2nd', '3rd', '4th', '5th', '6th', bonus) "
-                + " VALUES ( "
-                + round + ", "
-                + " '" + date + "', "
-                + nums[0] + ", "
-                + nums[1] + ", "
-                + nums[2] + ", "
-                + nums[3] + ", "
-                + nums[4] + ", "
-                + nums[5] + ", "
-                + nums[6] + "); ";
-        Log.d("insertLastestNumber" , query);
-        mDb.execSQL(query);
-    }
     public void insertWinningNum(String date, NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();
