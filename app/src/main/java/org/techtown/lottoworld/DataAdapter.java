@@ -143,6 +143,7 @@ public class DataAdapter
         Log.d("insertLastestNumber" , query);
         mDb.execSQL(query);
     }
+
     public void insertWinningNum(String date, NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();

@@ -33,24 +33,32 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter(list);
+        PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter();
+        adapter.submitData(selectData());
         recyclerView.setAdapter(adapter);
 
 
     }
 
-    public void selectData(){
+    public ArrayList<PurchaseData> selectData(){
         try {
+            ArrayList<PurchaseData> data = new ArrayList();
             DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
             ph_DbAdapter.open();
-
+            data.add(new PurchaseData(101,1,2,3,4,5,6,1000));
+            data.add(new PurchaseData(102,1,2,64,4,2,6));
+            data.add(new PurchaseData(101,1,2,12,4,3,6,1001));
+            data.add(new PurchaseData(102,1,2,4,4,4,6));
+            data.add(new PurchaseData(101,1,2,8,8,5,6,1232));
             ph_DbAdapter.close();
+            return data;
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
     }
-    private void load_values() {
 
+    private void load_values() {
 
     }
 }
