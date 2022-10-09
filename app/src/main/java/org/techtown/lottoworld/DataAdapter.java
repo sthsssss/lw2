@@ -78,7 +78,7 @@ public class DataAdapter
         {
             mDb = mDbHelper.getReadableDatabase();
             // Table 이름 -> antpool_bitcoin 불러오기
-            String sql ="SELECT * FROM " + TABLE_NAME;
+            String sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY round DESC";
 
             // 모델 넣을 리스트 생성
             List winningList = new ArrayList();

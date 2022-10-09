@@ -19,9 +19,7 @@
         <activity
             android:name=".PurchaseHistoryActivity"
             android:exported="false" />
-        <activity
-            android:name=".numAnalysis"
-            android:exported="false" />
+
         <activity
             android:name=".QrCheckingActivity"
             android:exported="false" />
@@ -34,7 +32,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".WinningNumPage"
+            android:name=".NumAnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".IntroActivity"

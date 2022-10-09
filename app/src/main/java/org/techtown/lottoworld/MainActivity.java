@@ -148,5 +148,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        analyzingLotto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -29,7 +29,7 @@ public class LatestRound {
         long diffHours = diffSec % (60 * 60 * 24);
 
         int weeks = (int) diffDays / 7;
-        if(diffDays % 7 == 0 && diffHours <= 10){
+        if(diffDays % 7 == 6 && diffHours <= 22){
             weeks =- 1;
         }
         return weeks + 1028;
