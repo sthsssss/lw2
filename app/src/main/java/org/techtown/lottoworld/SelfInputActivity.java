@@ -2,6 +2,7 @@ package org.techtown.lottoworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class SelfInputActivity extends AppCompatActivity {
     // Variable for Spinner UI
     int latestRound_Temporary = 1029;
     int selected_Round;
-    Button purchaseHistoryButton,saveNumbersButton;
+    Button resetInputButton,myTicketListButton,saveNumbersButton;
     Spinner roundSpinner;
     ArrayList arrayList = new ArrayList<String>();
     ArrayAdapter<String> arrayAdapter;
@@ -54,8 +55,9 @@ public class SelfInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_self_input);
         choosenBallList.clear();
         // View Matching
+        resetInputButton = findViewById(R.id.resetInput);
         saveNumbersButton = findViewById(R.id.SaveTicketButton);
-        purchaseHistoryButton = findViewById(R.id.purchaseHistoryButton);
+        myTicketListButton = findViewById(R.id.myTicketListButton);
         roundSpinner = findViewById(R.id.roundSpinner);
         choosenBall1 = findViewById(R.id.choosenBall1);
         choosenBall2 = findViewById(R.id.choosenBall2);
@@ -66,6 +68,12 @@ public class SelfInputActivity extends AppCompatActivity {
 
         adapterSetting();
         buttonSetting();
+        resetInputButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         saveNumbersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,10 +92,11 @@ public class SelfInputActivity extends AppCompatActivity {
 
             }
         });
-        purchaseHistoryButton.setOnClickListener(new View.OnClickListener() {
+        myTicketListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), PurchaseHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -25,33 +25,26 @@ public class DataAdapter
     private SQLiteDatabase mDb;
     private DataBaseHelper mDbHelper;
 
-    public DataAdapter(Context context)
-    {
+    public DataAdapter(Context context) {
         this.mContext = context;
         mDbHelper = new DataBaseHelper(mContext);
     }
 
     public DataAdapter open() throws SQLException, java.sql.SQLException {
-        try
-        {
+        try {
             mDbHelper.openDataBase();
-        }
-        catch (SQLException | java.sql.SQLException mSQLException)
-        {
+        } catch (SQLException | java.sql.SQLException mSQLException) {
             Log.e(TAG, "open >>"+ mSQLException.toString());
             throw mSQLException;
         }
         return this;
     }
-
-    public void close()
-    {
+    public void close() {
         mDbHelper.close();
     }
 
     public int getLatestRound(){
-        try
-        {
+        try {
             mDb = mDbHelper.getReadableDatabase();
             // Table 이름 -> antpool_bitcoin 불러오기
             String sql ="SELECT round FROM " + TABLE_NAME + " ORDER BY round DESC limit 1";
@@ -64,17 +57,13 @@ public class DataAdapter
                 latestRound = mCur.getInt(0);
             }
             return latestRound;
-        }
-        catch (SQLException mSQLException)
-        {
+        } catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
     }
-    public List getWinningData()
-    {
-        try
-        {
+    public List getWinningData() {
+        try {
             mDb = mDbHelper.getReadableDatabase();
             // Table 이름 -> antpool_bitcoin 불러오기
             String sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY round DESC";
@@ -86,8 +75,7 @@ public class DataAdapter
             NumberQuery numberQuery = null;
 
             Cursor mCur = mDb.rawQuery(sql, null);
-            if (mCur!=null)
-            {
+            if (mCur!=null) {
                 // 칼럼의 마지막까지
                 while( mCur.moveToNext() ) {
 
@@ -113,80 +101,11 @@ public class DataAdapter
 
             }
             return winningList;
-        }
-        catch (SQLException mSQLException)
-        {
+        } catch (SQLException mSQLException) {
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
     }
-
-    // api로 받아온 데이터를 insert 하는 함수
-    public void insertLastestNumber(NumberQuery wn){
-        mDb = mDbHelper.getWritableDatabase();
-        int[] nums = wn.getNums();
-        int round = wn.getRound();
-        String date = wn.getDate();
-
-        String query = "INSERT INTO tb_lotto_list"
-                + " (round, date, '1st', '2nd', '3rd', '4th', '5th', '6th', bonus) "
-                + " VALUES ( "
-                + round + ", "
-                + " '" + date + "', "
-                + nums[0] + ", "
-                + nums[1] + ", "
-                + nums[2] + ", "
-                + nums[3] + ", "
-                + nums[4] + ", "
-                + nums[5] + ", "
-                + nums[6] + "); ";
-        Log.d("insertLastestNumber" , query);
-        mDb.execSQL(query);
-    }
-
-    public void insertWinningNum(String date, NumberQuery wn){
-        mDb = mDbHelper.getWritableDatabase();
-        int[] nums = wn.getNums();
-        String query = "INSERT INTO tb_lotto_made"
-                + " (date, first, second, third, fourth, fifth, sixth)"
-                + " VALUES ("
-                + " '" + date + "', "
-                + nums[0] + ", "
-                + nums[1] + ", "
-                + nums[2] + ", "
-                + nums[3] + ", "
-                + nums[4] + ", "
-                + nums[5] + "); ";
-        Log.d("insertWinningNum()" , query);
-        mDb.execSQL(query);
-    }
-
-    public void insertPurchasedNum(@NonNull NumberQuery pn){
-        mDb = mDbHelper.getWritableDatabase();
-        int[] nums = pn.getNums();
-        String query = "INSERT INTO purchase_history_table"
-                + " (round, rank, first, second, third, fourth, fifth, sixth)"
-                + " VALUES ("
-                + pn.round + ", "
-                + this.getRank(pn.round,nums) + ", "
-                + nums[0] + ", "
-                + nums[1] + ", "
-                + nums[2] + ", "
-                + nums[3] + ", "
-                + nums[4] + ", "
-                + nums[5] + ");";
-        Log.d("insertPurchaseNum()" , query);
-        try {
-            mDb.execSQL(query);
-            Log.d("insertPurchaseNum()" , "try");
-        } catch(Exception e){
-            e.printStackTrace();
-            Log.d("insertPurchaseNum()" , "catch");
-        }
-    }
-
-
-    // NumberQuery를 이용해 순위를 반환하는 함수
     public int getRank(int gR_round,int[] nums){
         int rank = -1;
         int i=0,j=0;
@@ -229,5 +148,89 @@ public class DataAdapter
         }
 
         return rank;
+    }
+
+    // api로 받아온 데이터를 insert 하는 함수
+    public void insertLastestNumber(NumberQuery wn){
+        mDb = mDbHelper.getWritableDatabase();
+        int[] nums = wn.getNums();
+        int round = wn.getRound();
+        String date = wn.getDate();
+
+        String query = "INSERT INTO tb_lotto_list"
+                + " (round, date, '1st', '2nd', '3rd', '4th', '5th', '6th', bonus) "
+                + " VALUES ( "
+                + round + ", "
+                + " '" + date + "', "
+                + nums[0] + ", "
+                + nums[1] + ", "
+                + nums[2] + ", "
+                + nums[3] + ", "
+                + nums[4] + ", "
+                + nums[5] + ", "
+                + nums[6] + "); ";
+        Log.d("insertLastestNumber" , query);
+        mDb.execSQL(query);
+    }
+    public void insertWinningNum(String date, NumberQuery wn){
+        mDb = mDbHelper.getWritableDatabase();
+        int[] nums = wn.getNums();
+        String query = "INSERT INTO tb_lotto_made"
+                + " (date, first, second, third, fourth, fifth, sixth)"
+                + " VALUES ("
+                + " '" + date + "', "
+                + nums[0] + ", "
+                + nums[1] + ", "
+                + nums[2] + ", "
+                + nums[3] + ", "
+                + nums[4] + ", "
+                + nums[5] + "); ";
+        Log.d("insertWinningNum()" , query);
+        mDb.execSQL(query);
+    }
+    public void insertPurchasedNum(@NonNull NumberQuery pn){
+        mDb = mDbHelper.getWritableDatabase();
+        int[] nums = pn.getNums();
+        String query = "INSERT INTO purchase_history_table"
+                + " (round, rank, first, second, third, fourth, fifth, sixth)"
+                + " VALUES ("
+                + pn.round + ", "
+                + this.getRank(pn.round,nums) + ", "
+                + nums[0] + ", "
+                + nums[1] + ", "
+                + nums[2] + ", "
+                + nums[3] + ", "
+                + nums[4] + ", "
+                + nums[5] + ");";
+        Log.d("insertPurchaseNum()" , query);
+        try {
+            mDb.execSQL(query);
+            Log.d("insertPurchaseNum()" , "try");
+        } catch(Exception e){
+            e.printStackTrace();
+            Log.d("insertPurchaseNum()" , "catch");
+        }
+    }
+
+    public void loadDBforMadelist(){
+        if (mDb != null) {
+            String sqlQueryTbl = "SELECT * FROM purchase_history_table";
+            Cursor cursor = null;
+
+            // 쿼리 실행
+            // (round, rank, first, second, third, fourth, fifth, sixth)
+            cursor = mDb.rawQuery(sqlQueryTbl, null);
+
+            if (cursor.moveToNext()) { // 레코드가 존재한다면
+                int round = cursor.getInt(0);
+                int rank = cursor.getInt(1);
+                int first = cursor.getInt(2);
+                int second = cursor.getInt(3);
+                int third = cursor.getInt(4);
+                int fourth = cursor.getInt(5);
+                int fifth = cursor.getInt(6);
+                int sixth = cursor.getInt(7);
+            }
+        }
     }
 }
