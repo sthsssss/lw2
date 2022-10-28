@@ -42,16 +42,12 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
     public ArrayList<PurchaseData> selectData(){
         try {
-            ArrayList<PurchaseData> data = new ArrayList();
+            ArrayList<PurchaseData> tmpArrayData = new ArrayList<PurchaseData>();
             DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
             ph_DbAdapter.open();
-            data.add(new PurchaseData(101,1,2,3,4,5,6,1000));
-            data.add(new PurchaseData(102,1,2,64,4,2,6));
-            data.add(new PurchaseData(101,1,2,12,4,3,6,1001));
-            data.add(new PurchaseData(102,1,2,4,4,4,6));
-            data.add(new PurchaseData(101,1,2,8,8,5,6,1232));
+            tmpArrayData = ph_DbAdapter.loadDBforPHlist();
             ph_DbAdapter.close();
-            return data;
+            return tmpArrayData;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

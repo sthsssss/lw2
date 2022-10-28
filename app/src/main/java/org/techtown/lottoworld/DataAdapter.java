@@ -212,16 +212,23 @@ public class DataAdapter
         }
     }
 
-    public void loadDBforMadelist(){
-        if (mDb != null) {
+    // 구매목록 번호 수동생성
+    public void createDBforPHlist(){
+        
+    }
+    
+    // 구매목록 번호 리딩
+    public ArrayList<PurchaseData> loadDBforPHlist(){
+        try  {
             String sqlQueryTbl = "SELECT * FROM purchase_history_table";
             Cursor cursor = null;
 
             // 쿼리 실행
             // (round, rank, first, second, third, fourth, fifth, sixth)
             cursor = mDb.rawQuery(sqlQueryTbl, null);
-
-            if (cursor.moveToNext()) { // 레코드가 존재한다면
+            ArrayList<PurchaseData> data = new ArrayList();
+            int prevround = -1;
+            while (cursor.moveToNext()) { // 레코드가 존재한다면
                 int round = cursor.getInt(0);
                 int rank = cursor.getInt(1);
                 int first = cursor.getInt(2);
@@ -230,7 +237,21 @@ public class DataAdapter
                 int fourth = cursor.getInt(5);
                 int fifth = cursor.getInt(6);
                 int sixth = cursor.getInt(7);
+
+
+                if(round == prevround) {
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round));
+                }else{
+                    prevround = round;
+                    //TODO : 102 코드에는 당첨번호가 들어가야됨. -> SELECT FROM tb_lotto_list
+                    data.add(new PurchaseData(102, first, second, third, fourth, fifth, sixth, round));
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round));
+                }
             }
+            return data;
+        } catch(Exception e){
+            e.printStackTrace();
         }
+        return new ArrayList<PurchaseData>();
     }
 }
