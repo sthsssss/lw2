@@ -3,6 +3,8 @@ package org.techtown.lottoworld;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,12 +86,10 @@ public class SelfInputActivity extends AppCompatActivity {
                     for(int t=0; t<6; t++){
                         temp[t] = (int)choosenBallList.get(t);
                     }
-                    Log.d("saveNumbersButtonOnClicked",Integer.toString(selected_Round));
                     NumberQuery nq = new NumberQuery(selected_Round,"2022",temp);
                     saveSelfInput(nq);
                 } else{
                     Toast.makeText(getApplicationContext(), "번호 6개를 모두 선택해주세요", Toast.LENGTH_SHORT).show();
-                    Log.d("saveNumbersButtonOnClicked","6개아님");
                 }
 
             }
@@ -205,12 +205,16 @@ public class SelfInputActivity extends AppCompatActivity {
     // 저장하기 버튼 누르면..
     public void saveSelfInput(NumberQuery nq){
         try {
+            Toast.makeText(getApplicationContext(),"into the func",Toast.LENGTH_LONG).show();
             DataAdapter si_DbAdapter = new DataAdapter(getApplicationContext());
             si_DbAdapter.open();
-            si_DbAdapter.insertPurchasedNum(nq);
+            int rank = si_DbAdapter.getRank(nq.round, nq.nums);
+            Log.d("in that function",Integer.toString(rank));
+            si_DbAdapter.insertPurchasedNum(rank,nq);
             si_DbAdapter.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -46,7 +46,6 @@ public class IntroActivity extends AppCompatActivity {
 
                 latestInDB = loadDB();
                 addlatestNums();
-                getNumberQueryList();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

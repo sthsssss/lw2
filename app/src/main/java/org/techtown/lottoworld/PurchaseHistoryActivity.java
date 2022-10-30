@@ -54,7 +54,4 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         }
     }
 
-    private void load_values() {
-
-    }
 }

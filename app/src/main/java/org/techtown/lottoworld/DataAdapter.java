@@ -107,49 +107,7 @@ public class DataAdapter
             throw mSQLException;
         }
     }
-    public int getRank(int gR_round,int[] nums){
-        int rank = -1;
-        int i=0,j=0;
-        int cnt = 0;
-        boolean isBonus = false;
-        // 요청받은 회차가 현재회차보다 나중이거나, 1보다 적을 경우 예외처리
-        if(gR_round > LatestRound.round || gR_round < 1){
-            return -1;
-        }
 
-        NumberQuery winningNumOngRround = numberQueryList.get(gR_round);
-
-        while(i<7 && j<6){
-            if(winningNumOngRround.nums[i] == nums[j]){
-                i++;
-                j++;
-                cnt++;
-                if(i == 6) isBonus = true;
-            } else if(winningNumOngRround.nums[i] < nums[j]){
-                i++;
-            } else{
-                j++;
-            }
-        }
-
-        switch (cnt) {
-            case 3:
-                return 5;
-            case 4:
-                return 4;
-            case 5:
-                return 3;
-            case 6:
-                if(isBonus){
-                    return 2;
-                }
-                else{
-                    return 1;
-                }
-        }
-
-        return rank;
-    }
     public List getMadeNums()
     {
         try
@@ -220,28 +178,6 @@ public class DataAdapter
         mDb.execSQL(query);
     }
 
-    // api로 받아온 데이터를 insert 하는 함수
-    public void insertLastestNumber(NumberQuery wn){
-        mDb = mDbHelper.getWritableDatabase();
-        int[] nums = wn.getNums();
-        int round = wn.getRound();
-        String date = wn.getDate();
-
-        String query = "INSERT INTO tb_lotto_list"
-                + " (round, date, '1st', '2nd', '3rd', '4th', '5th', '6th', bonus) "
-                + " VALUES ( "
-                + round + ", "
-                + " '" + date + "', "
-                + nums[0] + ", "
-                + nums[1] + ", "
-                + nums[2] + ", "
-                + nums[3] + ", "
-                + nums[4] + ", "
-                + nums[5] + ", "
-                + nums[6] + "); ";
-        Log.d("insertLastestNumber" , query);
-        mDb.execSQL(query);
-    }
     public void insertWinningNum(String date, NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();
@@ -258,14 +194,16 @@ public class DataAdapter
         Log.d("insertWinningNum()" , query);
         mDb.execSQL(query);
     }
-    public void insertPurchasedNum(@NonNull NumberQuery pn){
+
+    public void insertPurchasedNum(int rank,NumberQuery pn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = pn.getNums();
+        int r = pn.round;
         String query = "INSERT INTO purchase_history_table"
                 + " (round, rank, first, second, third, fourth, fifth, sixth)"
                 + " VALUES ("
-                + pn.round + ", "
-                + this.getRank(pn.round,nums) + ", "
+                + r + ", "
+                + rank + ", "
                 + nums[0] + ", "
                 + nums[1] + ", "
                 + nums[2] + ", "
@@ -281,16 +219,77 @@ public class DataAdapter
             Log.d("insertPurchaseNum()" , "catch");
         }
     }
+    public int getRank(int gR_round,int[] nums){
+        try {
+            mDb = mDbHelper.getReadableDatabase();
+            int rank = 6;
+            int i=0,j=0;
+            int cnt = 0;
+            boolean isBonus = false;
 
-    // 구매목록 번호 수동생성
-    public void createDBforPHlist(){
-        
+            // 요청받은 회차가 현재회차보다 나중이거나, 1보다 적을 경우 예외처리
+            if(gR_round > LatestRound.round || gR_round < 1){
+                return -1;
+            }
+
+            String winningRoundNumsQuery = "SELECT * FROM tb_lotto_list WHERE round = " + Integer.toString(gR_round) + ";";
+            Log.d("t",winningRoundNumsQuery);
+            NumberQuery winningNumOngRround = new NumberQuery();
+            Cursor mcur = mDb.rawQuery(winningRoundNumsQuery, null);
+            if(mcur != null){
+                mcur.moveToNext();
+                Log.d("t",Integer.toString(mcur.getInt(2)));
+                winningNumOngRround.nums[0]=mcur.getInt(2);
+                winningNumOngRround.nums[1]=mcur.getInt(3);
+                winningNumOngRround.nums[2]=mcur.getInt(4);
+                winningNumOngRround.nums[3]=mcur.getInt(5);
+                winningNumOngRround.nums[4]=mcur.getInt(6);
+                winningNumOngRround.nums[5]=mcur.getInt(7);
+                winningNumOngRround.nums[6]=mcur.getInt(8);
+                mDb.close();
+            } else{
+                return -1;
+            }
+
+            while(i<7 && j<6){
+                if(winningNumOngRround.nums[i] == nums[j]){
+                    i++;
+                    j++;
+                    cnt++;
+                    if(i == 6) isBonus = true;
+                } else if(winningNumOngRround.nums[i] < nums[j]){
+                    i++;
+                } else{
+                    j++;
+                }
+            }
+
+            switch (cnt) {
+                case 3:
+                    return 5;
+                case 4:
+                    return 4;
+                case 5:
+                    return 3;
+                case 6:
+                    if(isBonus){
+                        return 2;
+                    }
+                    else{
+                        return 1;
+                    }
+            }
+            return rank;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
     }
-    
     // 구매목록 번호 리딩
     public ArrayList<PurchaseData> loadDBforPHlist(){
         try  {
-            String sqlQueryTbl = "SELECT * FROM purchase_history_table";
+            mDb = mDbHelper.getReadableDatabase();
+            String sqlQueryTbl = "SELECT * FROM purchase_history_table;";
             Cursor cursor = null;
 
             // 쿼리 실행
@@ -299,6 +298,8 @@ public class DataAdapter
             ArrayList<PurchaseData> data = new ArrayList();
             int prevround = -1;
             while (cursor.moveToNext()) { // 레코드가 존재한다면
+
+                Log.d("logcheck","into the loadDBfunc");
                 int round = cursor.getInt(0);
                 int rank = cursor.getInt(1);
                 int first = cursor.getInt(2);
@@ -307,15 +308,14 @@ public class DataAdapter
                 int fourth = cursor.getInt(5);
                 int fifth = cursor.getInt(6);
                 int sixth = cursor.getInt(7);
-
-
+                int bn = cursor.getInt(8);
                 if(round == prevround) {
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round));
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, bn, round, rank));
                 }else{
                     prevround = round;
                     //TODO : 102 코드에는 당첨번호가 들어가야됨. -> SELECT FROM tb_lotto_list
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, bn, round, rank));
                     data.add(new PurchaseData(102, first, second, third, fourth, fifth, sixth, round));
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round));
                 }
             }
             return data;

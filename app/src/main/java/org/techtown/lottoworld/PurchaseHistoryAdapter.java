@@ -32,7 +32,6 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         return dataSet.size();
     }
 
-
     // view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private int viewType;
@@ -59,6 +58,14 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView pn4 = itemView.findViewById(R.id.lpn4);
             TextView pn5 = itemView.findViewById(R.id.lpn5);
             TextView pn6 = itemView.findViewById(R.id.lpn6);
+            roundSticker.setText(item.round);
+            pn1.setText(item.nums[0]);
+            pn1.setText(item.nums[1]);
+            pn1.setText(item.nums[2]);
+            pn1.setText(item.nums[3]);
+            pn1.setText(item.nums[4]);
+            pn1.setText(item.nums[5]);
+
         }
 
         //List Holder Setting
@@ -72,6 +79,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
         }
+
+
     }
 
 

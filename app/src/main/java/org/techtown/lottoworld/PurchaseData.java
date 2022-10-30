@@ -3,14 +3,17 @@ package org.techtown.lottoworld;
 public class PurchaseData {
 
     // For Sticker Setting
-    PurchaseData(int type,int n1,int n2,int n3,int n4,int n5,int n6){
+    PurchaseData(int type,int n1,int n2,int n3,int n4,int n5,int n6,int bn,int round,int rank){
         this.type = type;
+        this.rank = rank;
+        this.round = round;
         this.nums[0] = n1;
         this.nums[1] = n2;
         this.nums[2] = n3;
         this.nums[3] = n4;
         this.nums[4] = n5;
         this.nums[5] = n6;
+        this.nums[6] = bn;
     }
     // For List Setting
     PurchaseData(int type,int n1,int n2,int n3,int n4,int n5,int n6,int round){
