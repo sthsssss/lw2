@@ -59,7 +59,7 @@ public class NumAnalysisAdapter extends RecyclerView.Adapter<NumAnalysisAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             round = itemView.findViewById(R.id.hRound);
-            winningNums = itemView.findViewById(R.id.hWinningNums);
+            winningNums = itemView.findViewById(R.id.madeWNums);
             bonusNum = itemView.findViewById(R.id.hBonusNum);
             rank = itemView.findViewById(R.id.rank);
 

@@ -121,6 +121,53 @@ public class DataAdapter
             throw mSQLException;
         }
     }
+    public List getMadeNums()
+    {
+        try
+        {
+            mDb = mDbHelper.getReadableDatabase();
+            // Table 이름 -> antpool_bitcoin 불러오기
+            String sql ="SELECT * FROM tb_lotto_made;";
+
+            // 모델 넣을 리스트 생성
+            List<NumberQuery> numberQueryList = new ArrayList();
+
+            // TODO : 모델 선언
+            NumberQuery numberQuery = null;
+
+            Cursor mCur = mDb.rawQuery(sql, null);
+            if (mCur!=null)
+            {
+                // 칼럼의 마지막까지
+                while( mCur.moveToNext() ) {
+
+                    // TODO : 커스텀 모델 생성
+                    numberQuery = new NumberQuery();
+
+                    // TODO : Record 기술
+                    // round, date, 1st, 2nd, 3rd, 4th, 5th, 6th, bonus
+                    numberQuery.setDate(mCur.getString(0));
+                    int first = mCur.getInt(1);
+                    int second = mCur.getInt(2);
+                    int third = mCur.getInt(3);
+                    int fourth = mCur.getInt(4);
+                    int fifth = mCur.getInt(5);
+                    int sixth = mCur.getInt(6);
+                    numberQuery.setNums(new int[]{first,second,third,fourth,fifth,sixth,0});
+
+                    // 리스트에 넣기
+                    numberQueryList.add(numberQuery);
+                }
+
+            }
+            return numberQueryList;
+        }
+        catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+    }
     // api로 받아온 데이터를 insert 하는 함수
     public void insertLastestNumber(NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();

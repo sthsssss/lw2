@@ -77,7 +77,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
         }else{  pages = totalItem / 10 + 1; }
 
 
-        Button saveButton = findViewById(R.id.saveButton);
+        Button saveButton = findViewById(R.id.saveNum);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -38,7 +38,7 @@
             android:padding="2dp">
 
             <TextView
-                android:id="@+id/hWinningNums"
+                android:id="@+id/madeWNums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 7 12 13 18 35"

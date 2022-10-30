@@ -91,10 +91,27 @@
         tools:itemCount="8"
         />
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저장하기" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="번호 저장하기"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/savedNumList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장된 번호 목록"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
