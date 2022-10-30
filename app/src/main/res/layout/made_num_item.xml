@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/madeWNums"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 7 12 13 18 35"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="26sp" />
+
+</LinearLayout>

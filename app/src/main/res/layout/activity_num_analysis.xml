@@ -1,51 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".numAnalysis">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".NumAnalysisActivity">
 
     <TextView
         android:id="@+id/numAnaysis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:text="번호분석"
-        android:textSize="38sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/winningNum"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/num_analysis_border"
         android:padding="8dp"
         android:text="13 29 32 37 39 41"
         android:textAlignment="center"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numAnaysis"
-        app:layout_constraintVertical_bias="0.071" />
+        android:textSize="26sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/winningNum"
-        app:layout_constraintVertical_bias="0.031">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -57,13 +43,13 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="4dp"
                 android:text="총합: 151"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 tools:textAlignment="center" />
 
         </LinearLayout>
@@ -78,36 +64,54 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/analysis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="4dp"
                 android:text="홀:4/2"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="327dp"
-        android:layout_height="359dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="18dp"
         android:text="과거 당첨 순위"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:textSize="22sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="340dp"
+        android:layout_height="420dp"
+        tools:itemCount="8"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="번호 저장하기"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/savedNumList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장된 번호 목록"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

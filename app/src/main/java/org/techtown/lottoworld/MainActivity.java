@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 넘버 텍스트뷰
     TextView latestWinningNumber_1,latestWinningNumber_2,latestWinningNumber_3,
-    latestWinningNumber_4,latestWinningNumber_5,latestWinningNumber_6,latestWinningNumber_Bonus,roundMain;
+            latestWinningNumber_4,latestWinningNumber_5,latestWinningNumber_6,latestWinningNumber_Bonus,roundMain;
 
     Button checkWinning,winningHistory,createLotto,analyzingLotto;
 
@@ -48,9 +49,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LatestRound round = null;
+        {
+            try {
+                round = new LatestRound();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        int latestRound = round.getRound();
+        lottoRound_Latest = latestRound;
         // Todo : 일단 예시로 1029 넣어둠 최신회차로 변경해야됨
         viewMatching();
-        getLottoApi(Integer.toString(lottoRound_Latest));
+
+        getLottoApi(Integer.toString(latestRound));
         buttonIntentMatching();
     }
 
@@ -89,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-
-
     // 메인화면 View 매칭
     public void viewMatching(){
         latestWinningNumber_1 = findViewById(R.id.latestWinningNo1);
@@ -116,24 +126,32 @@ public class MainActivity extends AppCompatActivity {
         latestWinningNumber_5.setText(winningNumbers_Main[4]);
         latestWinningNumber_6.setText(winningNumbers_Main[5]);
         latestWinningNumber_Bonus.setText(winningNumbers_Main[6]);
-        roundMain.setText("1029" + " 회차");
+        roundMain.setText( lottoRound_Latest + " 회차");
     }
 
     // button 액티비티 연결
     public void buttonIntentMatching(){
-         checkWinning.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent intent = new Intent(getApplicationContext(), CheckWinningActivity.class);
-                 startActivity(intent);
-             }
-         });
-         winningHistory.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent intent = new Intent(getApplicationContext(), WinningHistoryActivity.class);
-                 startActivity(intent);
-             }
-         });
+        checkWinning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CheckWinningActivity.class);
+                startActivity(intent);
+            }
+        });
+        winningHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WinningHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        analyzingLotto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
