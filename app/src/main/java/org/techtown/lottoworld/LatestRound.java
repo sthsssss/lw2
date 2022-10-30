@@ -14,7 +14,6 @@ public class LatestRound {
     public static int getRound() {
         return round;
     }
-
     public int calculateWeeks() throws ParseException {
         Calendar getToday = Calendar.getInstance();
         getToday.setTime(new Date()); //금일 날짜

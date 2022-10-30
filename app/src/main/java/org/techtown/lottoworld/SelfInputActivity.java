@@ -2,6 +2,7 @@ package org.techtown.lottoworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class SelfInputActivity extends AppCompatActivity {
     // Variable for Spinner UI
     int latestRound_Temporary = 1029;
     int selected_Round;
-    Button purchaseHistoryButton,saveNumbersButton;
+    Button resetInputButton,myTicketListButton,saveNumbersButton;
     Spinner roundSpinner;
     ArrayList arrayList = new ArrayList<String>();
     ArrayAdapter<String> arrayAdapter;
@@ -54,8 +55,9 @@ public class SelfInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_self_input);
         choosenBallList.clear();
         // View Matching
+        resetInputButton = findViewById(R.id.resetInput);
         saveNumbersButton = findViewById(R.id.SaveTicketButton);
-        purchaseHistoryButton = findViewById(R.id.purchaseHistoryButton);
+        myTicketListButton = findViewById(R.id.myTicketListButton);
         roundSpinner = findViewById(R.id.roundSpinner);
         choosenBall1 = findViewById(R.id.choosenBall1);
         choosenBall2 = findViewById(R.id.choosenBall2);
@@ -66,6 +68,13 @@ public class SelfInputActivity extends AppCompatActivity {
 
         adapterSetting();
         buttonSetting();
+        resetInputButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetButtons();
+                Toast.makeText(getApplicationContext(), "번호를 처음부터 다시 입력합니다", Toast.LENGTH_SHORT).show();
+            }
+        });
         saveNumbersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,15 +88,17 @@ public class SelfInputActivity extends AppCompatActivity {
                     NumberQuery nq = new NumberQuery(selected_Round,"2022",temp);
                     saveSelfInput(nq);
                 } else{
+                    Toast.makeText(getApplicationContext(), "번호 6개를 모두 선택해주세요", Toast.LENGTH_SHORT).show();
                     Log.d("saveNumbersButtonOnClicked","6개아님");
                 }
 
             }
         });
-        purchaseHistoryButton.setOnClickListener(new View.OnClickListener() {
+        myTicketListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), PurchaseHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -114,6 +125,7 @@ public class SelfInputActivity extends AppCompatActivity {
 
     // Function for Setting Button Event
     public void buttonSetting(){
+        // View Matching for 45 buttons
         int tempResId;
         for(int i=1;i<=45;i++){
             isButtonClicked[i] = false;
@@ -131,8 +143,6 @@ public class SelfInputActivity extends AppCompatActivity {
                     int tempId = v.getId();
                     String tempName = getResources().getResourceEntryName(tempId);
                     int tempIndex =  Integer.parseInt(tempName.substring(6));
-                    Toast.makeText(getApplicationContext(), Integer.toString(tempIndex), Toast.LENGTH_SHORT).show();
-
                     // Button Activated
                     if(!isButtonClicked[tempIndex] && buttonActiveCnt<6){
                         isButtonClicked[tempIndex] = true;
@@ -153,6 +163,7 @@ public class SelfInputActivity extends AppCompatActivity {
         }
     }
 
+    // 밑에 공 6개 띄우는 애
     public void displayPressed(){
         int i;
         int tmpId;
@@ -180,6 +191,18 @@ public class SelfInputActivity extends AppCompatActivity {
         }
     }
 
+    // 리셋 버튼
+    public void resetButtons(){
+        buttonActiveCnt = 0;
+        choosenBallList.clear();
+        for(int z=1;z<=45;z++) {
+            isButtonClicked[z] = false;
+            inputButtons[z].setBackgroundResource(R.drawable.selfinputbutton);
+        }
+        displayPressed();
+    }
+
+    // 저장하기 버튼 누르면..
     public void saveSelfInput(NumberQuery nq){
         try {
             DataAdapter si_DbAdapter = new DataAdapter(getApplicationContext());

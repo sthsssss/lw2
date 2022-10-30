@@ -25,32 +25,36 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_purchase_history);
         ArrayList<String> list = new ArrayList<>();
         for (int i=0; i<100; i++) {
-            list.add(String.format("TEXT %d", i)) ;
+            list.add(String.format("TEXT %d", i));
         }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter(list) ;
-        recyclerView.setAdapter(adapter) ;
+        PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter();
+        adapter.submitData(selectData());
+        recyclerView.setAdapter(adapter);
 
 
     }
 
-    public void selectData(){
+    public ArrayList<PurchaseData> selectData(){
         try {
+            ArrayList<PurchaseData> tmpArrayData = new ArrayList<PurchaseData>();
             DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
             ph_DbAdapter.open();
-
+            tmpArrayData = ph_DbAdapter.loadDBforPHlist();
             ph_DbAdapter.close();
+            return tmpArrayData;
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
     }
-    private void load_values() {
 
+    private void load_values() {
 
     }
 }

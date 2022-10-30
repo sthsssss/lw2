@@ -27,6 +27,7 @@ import java.util.Map;
 
 public class IntroActivity extends AppCompatActivity {
 
+    static public List<NumberQuery> numberQueryList;
     int[] nums = new int[7];
     JsonObject jsonObject;
     RequestQueue requestQueue;
@@ -45,6 +46,7 @@ public class IntroActivity extends AppCompatActivity {
 
                 latestInDB = loadDB();
                 addlatestNums();
+                getNumberQueryList();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -70,6 +72,7 @@ public class IntroActivity extends AppCompatActivity {
             return round;
         } catch (SQLException e) {
             e.printStackTrace();
+            Log.d("insertData", "실패함");
         }
         return round;
     }
@@ -97,9 +100,7 @@ public class IntroActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         String[] winningNumber_ParsingIndex = {"drwtNo1","drwtNo2","drwtNo3","drwtNo4","drwtNo5","drwtNo6","bnusNo"};
-
         String url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=" + Integer.toString(round);
-
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

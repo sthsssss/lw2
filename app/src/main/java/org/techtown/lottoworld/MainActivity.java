@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Main 화면 Lotto Api 가져오는 함수
     public void getLottoApi(String roundNumber){
-        Log.d("Taglog","we get into the getLottoApi function");
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject = (JsonObject) JsonParser.parseString(response);
                 for (int i = 0; i < 7; i++) {
                     winningNumbers_Main[i] = "" + jsonObject.get(winningNumber_ParsingIndex[i]);
-                    Log.d("Taglog",winningNumbers_Main[i]);
                 }
                 setNumbersView();
             }
@@ -105,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
     // 메인화면 View 매칭
     public void viewMatching(){
-        Log.d("Taglog","we get into the ViewMatching function");
         latestWinningNumber_1 = findViewById(R.id.latestWinningNo1);
         latestWinningNumber_2 = findViewById(R.id.latestWinningNo2);
         latestWinningNumber_3 = findViewById(R.id.latestWinningNo3);

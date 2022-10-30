@@ -1,60 +1,108 @@
 package org.techtown.lottoworld;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistoryAdapter.ViewHolder> {
-    private ArrayList<String> mData = null ;
+    private ArrayList<String> mData = null;
 
-    // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView1 ;
-
-        ViewHolder(View itemView) {
-            super(itemView) ;
-
-            // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.text1) ;
-        }
-    }
-
-    // 생성자에서 데이터 리스트 객체를 전달받음.
-    PurchaseHistoryAdapter(ArrayList<String> list) {
-        mData = list ;
-    }
-
-    // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
     @Override
     public PurchaseHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext() ;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
-
-        View view = inflater.inflate(R.layout.purchase_history_item, parent, false) ;
-        PurchaseHistoryAdapter.ViewHolder vh = new PurchaseHistoryAdapter.ViewHolder(view) ;
-
-        return vh ;
+        View view = LayoutInflater
+                .from(parent.getContext())
+                .inflate(getViewSrc(viewType), parent, false);
+        return new ViewHolder(view, viewType);
     }
 
-    // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(PurchaseHistoryAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position) ;
-        holder.textView1.setText(text) ;
+        holder.bind(dataSet.get(position));
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
     @Override
     public int getItemCount() {
-        return mData.size() ;
+        return dataSet.size();
     }
 
 
+    // view holder
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private int viewType;
+        public ViewHolder(View itemView, int viewType){
+            super(itemView);
+            this.viewType = viewType;
+        }
+
+        public void bind(PurchaseData item){
+            if (viewType==TYPE_STICKER){
+                bindSticker(item);
+            } else if(viewType==TYPE_LIST) {
+                bindList(item);
+            }
+
+        }
+
+        //Sticker Holder Setting
+        private void bindSticker(PurchaseData item){
+            TextView roundSticker = itemView.findViewById(R.id.roundSticker);
+            TextView pn1 = itemView.findViewById(R.id.lpn1);
+            TextView pn2 = itemView.findViewById(R.id.lpn2);
+            TextView pn3 = itemView.findViewById(R.id.lpn3);
+            TextView pn4 = itemView.findViewById(R.id.lpn4);
+            TextView pn5 = itemView.findViewById(R.id.lpn5);
+            TextView pn6 = itemView.findViewById(R.id.lpn6);
+        }
+
+        //List Holder Setting
+        private void bindList(PurchaseData item){
+            CheckBox checkBox = itemView.findViewById(R.id.checkBox);
+            TextView ranking = itemView.findViewById(R.id.ranking);
+            TextView lpn1 = itemView.findViewById(R.id.lpn1);
+            TextView lpn2 = itemView.findViewById(R.id.lpn2);
+            TextView lpn3 = itemView.findViewById(R.id.lpn3);
+            TextView lpn4 = itemView.findViewById(R.id.lpn4);
+            TextView lpn5 = itemView.findViewById(R.id.lpn5);
+            TextView lpn6 = itemView.findViewById(R.id.lpn6);
+        }
+    }
+
+
+    // Data Holding ...
+    private ArrayList<PurchaseData> dataSet = new ArrayList();
+
+    // view type
+    private int TYPE_STICKER = 101;
+    private int TYPE_LIST = 102;
+
+    public void submitData(ArrayList<PurchaseData> newData){
+        // newData is the selected query from Local DB!
+        dataSet = newData;
+        notifyDataSetChanged();
+    }
+
+    // ViewType에 따라 xml 파일을 연결
+    private int getViewSrc(int viewType){
+        if(viewType == TYPE_STICKER){
+            return R.layout.purchase_history_item_sticker;
+        } else {
+            return R.layout.purchase_history_item_list;
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (dataSet.get(position).type == TYPE_STICKER){
+            return TYPE_STICKER;
+        } else {
+            return TYPE_LIST;
+        }
+    }
 }
