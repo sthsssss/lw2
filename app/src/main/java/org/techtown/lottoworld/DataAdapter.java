@@ -308,7 +308,7 @@ public class DataAdapter
                 int fourth = cursor.getInt(5);
                 int fifth = cursor.getInt(6);
                 int sixth = cursor.getInt(7);
-                int bn = cursor.getInt(8);
+                int bn = 11;
                 if(round == prevround) {
                     data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, bn, round, rank));
                 }else{

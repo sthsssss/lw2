@@ -52,20 +52,22 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         //Sticker Holder Setting
         private void bindSticker(PurchaseData item){
             TextView roundSticker = itemView.findViewById(R.id.roundSticker);
-            TextView pn1 = itemView.findViewById(R.id.lpn1);
-            TextView pn2 = itemView.findViewById(R.id.lpn2);
-            TextView pn3 = itemView.findViewById(R.id.lpn3);
-            TextView pn4 = itemView.findViewById(R.id.lpn4);
-            TextView pn5 = itemView.findViewById(R.id.lpn5);
-            TextView pn6 = itemView.findViewById(R.id.lpn6);
-            roundSticker.setText(item.round);
-            pn1.setText(item.nums[0]);
-            pn1.setText(item.nums[1]);
-            pn1.setText(item.nums[2]);
-            pn1.setText(item.nums[3]);
-            pn1.setText(item.nums[4]);
-            pn1.setText(item.nums[5]);
+            TextView pn1 = itemView.findViewById(R.id.pn1);
+            TextView pn2 = itemView.findViewById(R.id.pn2);
+            TextView pn3 = itemView.findViewById(R.id.pn3);
+            TextView pn4 = itemView.findViewById(R.id.pn4);
+            TextView pn5 = itemView.findViewById(R.id.pn5);
+            TextView pn6 = itemView.findViewById(R.id.pn6);
+            TextView pn7 = itemView.findViewById(R.id.pn7);
+            roundSticker.setText(Integer.toString(item.round));
 
+            pn1.setText(Integer.toString(item.nums[0]));
+            pn2.setText(Integer.toString(item.nums[1]));
+            pn3.setText(Integer.toString(item.nums[2]));
+            pn4.setText(Integer.toString(item.nums[3]));
+            pn5.setText(Integer.toString(item.nums[4]));
+            pn6.setText(Integer.toString(item.nums[5]));
+            pn7.setText(Integer.toString(item.nums[6]));
         }
 
         //List Holder Setting
@@ -78,6 +80,14 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn4 = itemView.findViewById(R.id.lpn4);
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
+            ranking.setText(Integer.toString(item.rank));
+            lpn1.setText(Integer.toString(item.nums[0]));
+            lpn2.setText(Integer.toString(item.nums[1]));
+            lpn3.setText(Integer.toString(item.nums[2]));
+            lpn4.setText(Integer.toString(item.nums[3]));
+            lpn5.setText(Integer.toString(item.nums[4]));
+            lpn6.setText(Integer.toString(item.nums[5]));
+
         }
 
 
