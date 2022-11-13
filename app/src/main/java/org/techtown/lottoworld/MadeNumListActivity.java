@@ -1,14 +1,18 @@
 package org.techtown.lottoworld;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MadeNumListActivity extends AppCompatActivity {
@@ -17,55 +21,45 @@ public class MadeNumListActivity extends AppCompatActivity {
     int page = 0; // 현재 페이지
     List<NumberQuery> madeQueryList;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_made_num_list);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
+
+        RecyclerView recyclerView = findViewById(R.id.madeNum);
+//
+//        insertData(new NumberQuery(1,"2020-10-12",new int[]{1,2,3,4,5,6}));
+//        insertData(new NumberQuery(1,"2020-10-12",new int[]{3,2,3,4,5,6}));
+//        insertData(new NumberQuery(1,"2020-10-12",new int[]{4,2,3,4,5,6}));
+//
+//        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
+//        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
+//
+//        insertData(new NumberQuery(1,"2020-10-14",new int[]{8,2,3,4,5,6}));
 
         getNumberQueryList();
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        ArrayList<NumberQuery> listWithSticker = (ArrayList<NumberQuery>) makeSticker();
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        WinningNumAdapter adapter = new WinningNumAdapter();
+        Log.d("MadeNumListAdapter ","시작");
+        MadeNumListAdapter adapter = new MadeNumListAdapter();
 
+        Log.d("MadeNumListAdapter ","끝");
 
-        totalItem = madeQueryList.size();
+        adapter.setItems(listWithSticker);
 
-        if (totalItem % 10 == 0) { // 전체 페이지 계산
-            pages = totalItem / 10;
-        } else {
-            pages = totalItem / 10 + 1;
-        }
-
-        addNumItem(adapter);
+        Log.d("adapter.setItems ","실행");
 
         recyclerView.setAdapter(adapter);
+        Log.d("recyclerView.setAdapter ","실행");
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                int totalCount = recyclerView.getAdapter().getItemCount();
-
-                if (lastPosition == totalCount - 1) {
-                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
-                    addNumItem(adapter);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
     }
-
-    public int getNumberQueryList() {
+    public int getNumberQueryList(){
         int round = 0;
         try {
             DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
@@ -75,29 +69,40 @@ public class MadeNumListActivity extends AppCompatActivity {
             madeQueryList = mDbAdapter.getMadeNums();
             // db 닫기
             mDbAdapter.close();
-            Log.d("insertData", "성공함");
         } catch (SQLException e) {
             e.printStackTrace();
-            Log.d("insertData", "실패함");
         }
         return round;
     }
+    public List<NumberQuery> makeSticker(){
+        List<NumberQuery> newList = new ArrayList<>();
+        String preDate = "1979";
 
-    public void addNumItem(WinningNumAdapter adapter) {
+        Collections.reverse(madeQueryList);
 
-        int start = page * 10;
-        int end;
-
-        if (totalItem < (page + 1) * 10) {
-            end = totalItem;
-        } else {
-            end = (page + 1) * 10;
+        for(NumberQuery numberQuery : madeQueryList){
+            if(!numberQuery.getDate().equals(preDate)){
+                newList.add(new NumberQuery(-1,numberQuery.getDate(),new int[]{0}));
+                preDate = numberQuery.getDate();
+            }
+            newList.add(numberQuery);
         }
+        return newList;
+    }
 
-        for (int i = start; i < end; i++) {
-            adapter.addItem(madeQueryList.get(i));
+    public void insertData(NumberQuery wn){
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
+
+            mDbAdapter.insertMadeNum(wn);
+
+            // db 닫기
+            mDbAdapter.close();
+            Log.d("insertData WinningData", "성공함");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("insertData WinningData", "실패함");
         }
-        page++;
-
     }
 }

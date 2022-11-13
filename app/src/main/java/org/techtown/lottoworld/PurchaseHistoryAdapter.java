@@ -46,7 +46,6 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             } else if(viewType==TYPE_LIST) {
                 bindList(item);
             }
-
         }
 
         //Sticker Holder Setting

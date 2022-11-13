@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,10 +58,11 @@ public class NumAnalysisActivity extends AppCompatActivity {
 
         NumberQuery numberQuery = new NumberQuery();
         numberQuery.setNums(nums);
-
         Date dateNow = Calendar.getInstance().getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd", Locale.getDefault());
         String date = format.format(dateNow);
+
+        numberQuery.setDate(date);
 
         total.setText("총합:" + numberQuery.getTotal());
         even.setText("짝홀:" + numberQuery.getEven()+"/"+( 6 - numberQuery.getEven()) );
@@ -81,7 +83,17 @@ public class NumAnalysisActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertData(date, numberQuery);
+                insertData(numberQuery);
+            }
+        });
+
+        Button madeList = findViewById(R.id.madeList);
+        madeList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent madeNumListActivity = new Intent(NumAnalysisActivity.this, MadeNumListActivity.class );
+                startActivity(madeNumListActivity);
+                finish();
             }
         });
 
@@ -203,7 +215,6 @@ public class NumAnalysisActivity extends AppCompatActivity {
 
         for(int i = start; i < end; i++){
             adapter.addItem(historyList.get(i));
-
         }
         page ++;
 
@@ -225,16 +236,16 @@ public class NumAnalysisActivity extends AppCompatActivity {
             historyList.add(new WinningHistory(wn,5));
         }
     }
-    public void insertData(String date, NumberQuery wn){
+    public void insertData( NumberQuery wn){
         try {
             DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
             mDbAdapter.open();
 
-            mDbAdapter.insertWinningNum(date, wn);
+            mDbAdapter.insertMadeNum(wn);
 
             // db 닫기
             mDbAdapter.close();
-            Log.d("insertData", "성공함");
+            Log.d("insertDataNumAnalysis", "성공함");
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d("insertData", "실패함");

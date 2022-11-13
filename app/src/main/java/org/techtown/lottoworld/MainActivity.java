@@ -16,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TextView latestWinningNumber_1,latestWinningNumber_2,latestWinningNumber_3,
             latestWinningNumber_4,latestWinningNumber_5,latestWinningNumber_6,latestWinningNumber_Bonus,roundMain;
 
-    Button checkWinning,winningHistory,createLotto,analyzingLotto;
+    Button checkWinning,winningHistory,createLotto, numsMade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         checkWinning = findViewById(R.id.checkWinning);
         winningHistory = findViewById(R.id.winningHistory);
         createLotto = findViewById(R.id.createLotto);
-        analyzingLotto = findViewById(R.id.analyzingLotto);
+        numsMade = findViewById(R.id.analyzingLotto);
     }
     // api로 가져온 번호를 뷰에 띄우기
     public void setNumbersView(){
@@ -146,10 +145,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        analyzingLotto.setOnClickListener(new View.OnClickListener() {
+        numsMade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MadeNumListActivity.class);
                 startActivity(intent);
             }
         });

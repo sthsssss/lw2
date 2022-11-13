@@ -56,7 +56,7 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="60dp"
       android:layout_marginBottom="80dp"
-      android:text="번호분석"
+      android:text="저장번호"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent" />
 

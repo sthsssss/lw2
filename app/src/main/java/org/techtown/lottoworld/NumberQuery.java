@@ -77,12 +77,11 @@ public class NumberQuery implements Comparable<NumberQuery>{
 
     public String numberString(){ // 당첨번호 보너스를 제외한 6개를 붙인 문자열
         StringBuilder sb = new StringBuilder(); // well estimated buffer
-
-        for (int num : nums) {
-            if (sb.length() > 0)
+        int i;
+        for(i = 0;i < 6; i++){
+            sb.append(nums[i]);
+            if(i != 5){
                 sb.append(" ");
-            if(num != nums[6]){
-                sb.append(num);
             }
         }
         return sb.toString();

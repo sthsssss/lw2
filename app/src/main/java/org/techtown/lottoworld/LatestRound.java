@@ -25,10 +25,10 @@ public class LatestRound {
 
         long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
         long diffDays = diffSec / (24*60*60); //일자수 차이
-        long diffHours = diffSec % (60 * 60 * 24);
+        long diffHours = diffSec % (60 * 60 * 24); // 남은 시간
 
         int weeks = (int) diffDays / 7;
-        if(diffDays % 7 == 6 && diffHours <= 22){
+        if(diffDays % 7 == 0 && diffHours <= 22){
             weeks =- 1;
         }
         return weeks + 1028;

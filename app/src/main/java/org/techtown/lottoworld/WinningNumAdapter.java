@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WinningNumAdapter extends RecyclerView.Adapter<WinningNumAdapter.ViewHolder>{
     ArrayList<NumberQuery> items = new ArrayList<NumberQuery>();

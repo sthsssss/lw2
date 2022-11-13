@@ -11,37 +11,36 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningHistoryActivity extends AppCompatActivity {
+    static public List<NumberQuery> numberQueryList;
     int pages; // 전체 페이지 수
     int totalItem;
     int page = 0; // 현재 페이지
 
-    public static List<NumberQuery> numberQueryList;
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_winning_history);
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
+        setContentView(R.layout.activity_made_num_list);
+        RecyclerView recyclerView = findViewById(R.id.madeNum);
 
         getNumberQueryList();
 
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
         WinningNumAdapter adapter = new WinningNumAdapter();
 
-
         totalItem = numberQueryList.size();
 
-        if(totalItem % 10 == 0){ // 전체 페이지 계산
+
+        if (totalItem % 10 == 0) { // 전체 페이지 계산
             pages = totalItem / 10;
-        }else{  pages = totalItem / 10 + 1; }
+        } else {
+            pages = totalItem / 10 + 1;
+        }
 
         addNumItem(adapter);
 
@@ -52,6 +51,7 @@ public class WinningHistoryActivity extends AppCompatActivity {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
+
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -59,14 +59,16 @@ public class WinningHistoryActivity extends AppCompatActivity {
                 int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 int totalCount = recyclerView.getAdapter().getItemCount();
 
-                if(lastPosition == totalCount -1 ){
+                if (lastPosition == totalCount - 1) {
                     //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
                     addNumItem(adapter);
-                    adapter.notifyDataSetChanged();}
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
     }
-    public int getNumberQueryList(){
+
+    public int getNumberQueryList() {
         int round = 0;
         try {
             DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
@@ -76,30 +78,27 @@ public class WinningHistoryActivity extends AppCompatActivity {
             numberQueryList = mDbAdapter.getWinningData();
             // db 닫기
             mDbAdapter.close();
-            Log.d("insertData", "성공함");
         } catch (SQLException e) {
             e.printStackTrace();
-            Log.d("insertData", "실패함");
         }
         return round;
     }
 
-    public void addNumItem(WinningNumAdapter adapter){
+    public void addNumItem(WinningNumAdapter adapter) {
 
         int start = page * 10;
         int end;
 
-        if( totalItem < (page + 1) * 10){
+        if (totalItem < (page + 1) * 10) {
             end = totalItem;
-        }else{
+        } else {
             end = (page + 1) * 10;
         }
-        Log.d("오류확인용 ㅋ",start + ", " + end);
 
-        for(int i = start; i < end; i++){
+        for (int i = start; i < end; i++) {
             adapter.addItem(numberQueryList.get(i));
         }
-        page ++;
+        page++;
 
     }
 }

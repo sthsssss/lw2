@@ -130,7 +130,7 @@ public class DataAdapter
 
                     // TODO : 커스텀 모델 생성
                     numberQuery = new NumberQuery();
-
+                    numberQuery.setRound(0);
                     // TODO : Record 기술
                     // round, date, 1st, 2nd, 3rd, 4th, 5th, 6th, bonus
                     numberQuery.setDate(mCur.getString(0));
@@ -178,13 +178,14 @@ public class DataAdapter
         mDb.execSQL(query);
     }
 
-    public void insertWinningNum(String date, NumberQuery wn){
+    public void insertMadeNum(NumberQuery wn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = wn.getNums();
+        String date = wn.getDate();
         String query = "INSERT INTO tb_lotto_made"
                 + " (date, first, second, third, fourth, fifth, sixth)"
-                + " VALUES ("
-                + " '" + date + "', "
+                + " VALUES ( '"
+                + date + "', "
                 + nums[0] + ", "
                 + nums[1] + ", "
                 + nums[2] + ", "

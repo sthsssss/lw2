@@ -18,7 +18,9 @@
         tools:layout_marginBottom="20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="360dp"
-        android:layout_height="580dp"
+        android:id="@+id/madeNum"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
