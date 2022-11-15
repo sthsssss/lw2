@@ -3,3 +3,4 @@
  - 포크없이 한 리파지토리에서 관리
  
 https://colorhunt.co/palette/937dc2c689c6ffabe1ffe6f7
+컬러팔레트 사이트 // 색 누르면 색상코드 카피됨
