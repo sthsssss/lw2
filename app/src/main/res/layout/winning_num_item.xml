@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/winning_border"
+    android:background="@drawable/winning_border2"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,8 +17,8 @@
             android:id="@+id/round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ECECED"
-            android:padding="10dp"
+            android:background="@color/teal_800"
+            android:padding="12dp"
             android:text="1030회 당첨번호"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
