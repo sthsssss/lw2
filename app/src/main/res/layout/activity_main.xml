@@ -23,31 +23,39 @@
       android:id="@+id/createLotto"
       android:layout_width="150dp"
       android:layout_height="150dp"
+      android:layout_marginStart="48dp"
       android:background="@drawable/borderlessobject"
       android:elevation="10dp"
       android:text="번호생성"
-      tools:layout_editor_absoluteX="55dp"
-      tools:layout_editor_absoluteY="510dp" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/checkWinning"
+      app:layout_constraintVertical_bias="0.141" />
 
   <Button
       android:id="@+id/checkWinning"
       android:layout_width="150dp"
       android:layout_height="150dp"
+      android:layout_marginStart="48dp"
+      android:layout_marginTop="350dp"
       android:background="@drawable/borderlessobject"
       android:elevation="10dp"
       android:text="당첨확인"
-      tools:layout_editor_absoluteX="55dp"
-      tools:layout_editor_absoluteY="353dp" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <Button
       android:id="@+id/winningHistory"
       android:layout_width="150dp"
       android:layout_height="150dp"
+      android:layout_marginTop="350dp"
       android:background="@drawable/borderlessobject"
       android:elevation="10dp"
       android:text="과거당첨"
-      tools:layout_editor_absoluteX="214dp"
-      tools:layout_editor_absoluteY="353dp" />
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.253"
+      app:layout_constraintStart_toEndOf="@+id/checkWinning"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <Button
       android:id="@+id/analyzingLotto"
@@ -56,8 +64,12 @@
       android:background="@drawable/borderlessobject"
       android:elevation="10dp"
       android:text="저장번호"
-      tools:layout_editor_absoluteX="214dp"
-      tools:layout_editor_absoluteY="510dp" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.253"
+      app:layout_constraintStart_toEndOf="@+id/createLotto"
+      app:layout_constraintTop_toBottomOf="@+id/winningHistory"
+      app:layout_constraintVertical_bias="0.141" />
 
   <TextView
       android:id="@+id/latestWinningNoBonus"
