@@ -20,45 +20,44 @@
       app:layout_constraintVertical_bias="0.158" />
 
   <Button
+      android:id="@+id/createLotto"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:background="@drawable/borderlessobject"
+      android:elevation="10dp"
+      android:text="번호생성"
+      tools:layout_editor_absoluteX="55dp"
+      tools:layout_editor_absoluteY="510dp" />
+
+  <Button
       android:id="@+id/checkWinning"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="388dp"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:background="@drawable/borderlessobject"
+      android:elevation="10dp"
       android:text="당첨확인"
-      app:layout_constraintEnd_toStartOf="@+id/winningHistory"
-      app:layout_constraintHorizontal_bias="0.356"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      tools:layout_editor_absoluteX="55dp"
+      tools:layout_editor_absoluteY="353dp" />
 
   <Button
       android:id="@+id/winningHistory"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="388dp"
-      android:layout_marginEnd="60dp"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:background="@drawable/borderlessobject"
+      android:elevation="10dp"
       android:text="과거당첨"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <Button
-      android:id="@+id/createLotto"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="60dp"
-      android:layout_marginBottom="80dp"
-      android:text="번호생성"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      tools:layout_editor_absoluteX="214dp"
+      tools:layout_editor_absoluteY="353dp" />
 
   <Button
       android:id="@+id/analyzingLotto"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="60dp"
-      android:layout_marginBottom="80dp"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:background="@drawable/borderlessobject"
+      android:elevation="10dp"
       android:text="저장번호"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent" />
+      tools:layout_editor_absoluteX="214dp"
+      tools:layout_editor_absoluteY="510dp" />
 
   <TextView
       android:id="@+id/latestWinningNoBonus"
@@ -68,8 +67,8 @@
       android:layout_marginTop="260dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo6"
@@ -83,8 +82,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo3"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo1"
@@ -98,8 +97,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo4"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo2"
@@ -113,8 +112,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo5"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo3"
@@ -128,8 +127,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo6"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo4"
@@ -143,8 +142,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNoBonus"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo5"
@@ -157,8 +156,8 @@
       android:layout_marginTop="252dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
-      android:textColor="#FFFFFF"
       android:gravity="center"
+      android:textColor="#FFFFFF"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo2"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"

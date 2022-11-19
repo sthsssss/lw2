@@ -12,37 +12,25 @@
         <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_winning_history.xml" value="0.1875" />
         <entry key="..\:/LottoWorld/app/src/main/res/layout/activity_winning_nums.xml" value="0.1875" />
         <entry key="..\:/LottoWorld/app/src/main/res/layout/winning_num_item.xml" value="0.1875" />
+        <entry key="..\:/LottoWorld2/app/src/main/res/layout/activity_check_winning.xml" value="0.19701086956521738" />
+        <entry key="..\:/LottoWorld2/app/src/main/res/layout/activity_main.xml" value="0.19701086956521738" />
         <entry key="..\:/LottoWorld2/app/src/main/res/layout/activity_purchase_history.xml" value="0.25" />
+        <entry key="..\:/LottoWorld2/app/src/main/res/layout/activity_self_input.xml" value="0.19701086956521738" />
         <entry key="..\:/LottoWorld2/app/src/main/res/layout/activity_winning_history.xml" value="0.2609375" />
         <entry key="..\:/LottoWorld2/app/src/main/res/layout/purchase_history_item.xml" value="0.2598958333333333" />
+        <entry key="..\:/LottoWorld2/app/src/main/res/layout/purchase_history_item_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/LottoWorld2/app/src/main/res/layout/purchase_history_item_sticker.xml" value="0.36614583333333334" />
         <entry key="..\:/LottoWorld2/app/src/main/res/layout/winning_num_item.xml" value="0.2609375" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2025" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/borderlessobject.xml" value="0.2015" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/num_analysis_border.xml" value="0.2025" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/round_view.xml" value="0.2025" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/roundcorner_button.xml" value="0.2025" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/winning_border.xml" value="0.2025" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_list.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_sticker.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorldLaptopClone/app/src/main/res/layout/activity_self_input.xml" value="0.3079710144927536" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/inputbackgound.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/num_analysis_border.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/num_analysis_border2.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/num_analysis_inputB.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/round_view.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/roundcorner_button.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/spinnerborder.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/winning_border.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/winning_border2.xml" value="0.1745" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/font/main_font_bmjua.xml" value="0.1" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_check_winning.xml" value="0.1" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_made_num_list.xml" value="0.22" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_main.xml" value="0.13515625" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_num_analysis.xml" value="0.22" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_purchase_history.xml" value="0.15707762557077626" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_qr_checking.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/history_item.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/made_num_date.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/made_num_dateItem.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/made_num_item.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_list.xml" value="0.6666666666666666" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_sticker.xml" value="0.6" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/winning_num_item.xml" value="0.5" />
-        <entry key="..\:/Users/SAMSUNG/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/winning_num_item_test.xml" value="0.14947916666666666" />
       </map>
     </option>
   </component>
