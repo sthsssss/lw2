@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@drawable/background_blur"
   tools:context=".MainActivity">
 
   <LinearLayout
@@ -25,17 +26,17 @@
         android:id="@+id/textView1"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box" />
+        android:textSize="38sp" />
 
       <TextView
         android:id="@+id/textView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box" />
+        android:textSize="38sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,17 +48,17 @@
         android:id="@+id/textView3"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box"/>
+        android:textSize="38sp" />
 
       <TextView
         android:id="@+id/textView4"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box" />
+        android:textSize="38sp" />
 
     </LinearLayout>
 
@@ -70,17 +71,17 @@
         android:id="@+id/textView5"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box"/>
+        android:textSize="38sp" />
 
       <TextView
         android:id="@+id/textView6"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/box"
         android:gravity="center_vertical|center_horizontal"
-        android:textSize="38sp"
-        android:background="@drawable/box"/>
+        android:textSize="38sp" />
     </LinearLayout>
   </LinearLayout>
 
