@@ -52,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
                 isStarted = true;
 
-                // 룰렛 돌아가는 효과음
-                mediaPlayer1 = MediaPlayer.create(getApplicationContext(), R.raw.roulette);
-                mediaPlayer1.setLooping(true);
-                mediaPlayer1.start();
-
                 // 숫자 지우기
                 for (TextView textView : textViews) {
                     textView.setText("");
@@ -91,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             int textViewId = getResources()
                     .getIdentifier("textView"+ (i + 1),"id",getPackageName());
             textViews[i] = findViewById(textViewId);
+            textViews[i].setSoundEffectsEnabled(false);
         }
 
         for (int i = 0; i < textViews.length; i++) {
@@ -105,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
                     Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.spin);
 
                     if (isStarted) {
-                        dingdong();
+                        MediaPlayer mediaPlayer1 = MediaPlayer.create(getApplicationContext(), R.raw.roulette_spin);
+                        mediaPlayer1.start();
+
                         ((TextView) view).startAnimation(anim);
 
                         Handler handler = new Handler();
@@ -125,16 +123,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // 룰렛 클릭 시 효과음
-    public void dingdong() {
-        mediaPlayer2 = MediaPlayer.create(getApplicationContext(), R.raw.dingdong);
-        mediaPlayer2.start();
-    }
-
     // 한번의 시도가 끝났을 때
     public void endOfRoulette() {
-        mediaPlayer2.stop();
-
         isAllTrue = true;
 
         for (int i = 0; i < isTextViewClicked.length; i++) {
@@ -144,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (isAllTrue) {
-            mediaPlayer1.stop();
             isStarted = false;
         }
     }
