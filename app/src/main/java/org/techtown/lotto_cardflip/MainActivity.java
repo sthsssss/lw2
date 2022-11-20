@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -38,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button = findViewById(R.id.button);
+        button.setSoundEffectsEnabled(false);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                MediaPlayer mediaPlayer1 = MediaPlayer.create(getApplicationContext(), R.raw.card_shuffle);
+                mediaPlayer1.start();
 
                 isStarted = true;
 
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             int textViewId = getResources()
                     .getIdentifier("textView"+ (i + 1),"id",getPackageName());
             textViews[i] = findViewById(textViewId);
+            textViews[i].setSoundEffectsEnabled(false);
         }
 
         for (int i = 0; i < textViews.length; i++) {
@@ -85,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
                     if(!isTextViewClicked[tempIndex-1] && TextViewActiveCnt < 6 && isStarted){
                         isTextViewClicked[tempIndex-1] = true;
                         ++TextViewActiveCnt;
+
+                        MediaPlayer mediaPlayer2 = MediaPlayer.create(getApplicationContext(), R.raw.card_flip);
+                        mediaPlayer2.start();
+
                         anim.setTarget((TextView)view);
                         anim.start();
 
