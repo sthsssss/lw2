@@ -1,4 +1,4 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.winningHistory;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class WinningNumAdapter extends RecyclerView.Adapter<WinningNumAdapter.ViewHolder>{
     ArrayList<NumberQuery> items = new ArrayList<NumberQuery>();

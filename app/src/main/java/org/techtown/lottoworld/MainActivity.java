@@ -19,6 +19,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.techtown.lottoworld.madeNums.MadeNumListActivity;
+import org.techtown.lottoworld.winningHistory.WinningHistoryActivity;
+
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;

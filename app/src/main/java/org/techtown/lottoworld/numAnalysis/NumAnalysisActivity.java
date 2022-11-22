@@ -1,4 +1,4 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numAnalysis;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -13,6 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.techtown.lottoworld.DataAdapter;
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
+import org.techtown.lottoworld.madeNums.MadeNumListActivity;
+import org.techtown.lottoworld.winningHistory.WinningHistory;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

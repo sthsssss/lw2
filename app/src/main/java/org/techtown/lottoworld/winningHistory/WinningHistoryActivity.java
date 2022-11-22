@@ -1,17 +1,17 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.winningHistory;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+
+import org.techtown.lottoworld.DataAdapter;
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WinningHistoryActivity extends AppCompatActivity {
@@ -23,8 +23,8 @@ public class WinningHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_made_num_list);
-        RecyclerView recyclerView = findViewById(R.id.madeNum);
+        setContentView(R.layout.activity_winning_history);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
 
         getNumberQueryList();
 

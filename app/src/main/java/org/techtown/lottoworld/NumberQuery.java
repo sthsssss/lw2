@@ -81,7 +81,7 @@ public class NumberQuery implements Comparable<NumberQuery>{
         for(i = 0;i < 6; i++){
             sb.append(nums[i]);
             if(i != 5){
-                sb.append(" ");
+                sb.append("  ");
             }
         }
         return sb.toString();

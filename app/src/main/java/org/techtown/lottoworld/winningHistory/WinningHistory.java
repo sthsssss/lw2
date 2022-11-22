@@ -1,6 +1,9 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.winningHistory;
 
-public class WinningHistory {NumberQuery numberQuery;
+import org.techtown.lottoworld.NumberQuery;
+
+public class WinningHistory {
+    NumberQuery numberQuery;
     int rank;
 
     public WinningHistory(NumberQuery numberQuery, int rank) {

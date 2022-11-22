@@ -1,15 +1,11 @@
 package org.techtown.lottoworld;
 
 
-import static org.techtown.lottoworld.WinningHistoryActivity.numberQueryList;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;

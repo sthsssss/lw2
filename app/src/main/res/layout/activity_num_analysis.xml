@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:textAlignment="center"
-    tools:context=".NumAnalysisActivity">
+    tools:context=".numAnalysis.NumAnalysisActivity">
 
     <TextView
         android:id="@+id/numAnaysis"

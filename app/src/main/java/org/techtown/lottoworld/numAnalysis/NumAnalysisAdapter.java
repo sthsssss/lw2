@@ -1,4 +1,4 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numAnalysis;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
+import org.techtown.lottoworld.winningHistory.WinningHistory;
 
 import java.util.ArrayList;
 

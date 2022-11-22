@@ -1,6 +1,5 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.madeNums;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+
+import org.techtown.lottoworld.DataAdapter;
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,15 +31,17 @@ public class MadeNumListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_made_num_list);
 
         RecyclerView recyclerView = findViewById(R.id.madeNum);
-//
-//        insertData(new NumberQuery(1,"2020-10-12",new int[]{1,2,3,4,5,6}));
-//        insertData(new NumberQuery(1,"2020-10-12",new int[]{3,2,3,4,5,6}));
-//        insertData(new NumberQuery(1,"2020-10-12",new int[]{4,2,3,4,5,6}));
-//
-//        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
-//        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
-//
-//        insertData(new NumberQuery(1,"2020-10-14",new int[]{8,2,3,4,5,6}));
+
+/*
+        insertData(new NumberQuery(1,"2020-10-12",new int[]{1,2,3,4,5,6}));
+        insertData(new NumberQuery(1,"2020-10-12",new int[]{3,2,3,4,5,6}));
+        insertData(new NumberQuery(1,"2020-10-12",new int[]{4,2,3,4,5,6}));
+
+        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
+        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
+        insertData(new NumberQuery(1,"2020-10-14",new int[]{8,2,3,4,5,6}));
+
+ */
 
         getNumberQueryList();
 

@@ -1,4 +1,4 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.madeNums;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.techtown.lottoworld.NumberQuery;
+import org.techtown.lottoworld.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.ViewHolder> {
     ArrayList<NumberQuery> items = new ArrayList<NumberQuery>();

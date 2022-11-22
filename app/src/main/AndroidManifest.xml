@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MadeNumListActivity"
+            android:name=".madeNums.MadeNumListActivity"
             android:exported="false" />
         <activity
             android:name=".PurchaseHistoryActivity"
@@ -33,7 +33,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NumAnalysisActivity"
+            android:name=".numAnalysis.NumAnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".IntroActivity"
@@ -49,7 +49,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".WinningHistoryActivity" />
+        <activity android:name=".winningHistory.WinningHistoryActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
