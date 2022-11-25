@@ -75,7 +75,7 @@ public class NumAnalysisAdapter extends RecyclerView.Adapter<NumAnalysisAdapter.
             round.setText(roundT);
             winningNums.setText(numberQuery.numberString());
             bonusNum.setText(Integer.toString(numberQuery.getNums()[6]));
-            rank.setText(Integer.toString(item.getRank()));
+            rank.setText(Integer.toString(item.getRank()) + "등");
         }
 
     }

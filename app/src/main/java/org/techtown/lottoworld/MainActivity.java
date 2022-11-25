@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.techtown.lottoworld.madeNums.MadeNumListActivity;
+import org.techtown.lottoworld.numAnalysis.NumAnalysisActivity;
 import org.techtown.lottoworld.winningHistory.WinningHistoryActivity;
 
 import java.text.ParseException;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         numsMade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MadeNumListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 startActivity(intent);
             }
         });

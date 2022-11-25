@@ -115,11 +115,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="과거 당첨 순위"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="420dp"
         tools:itemCount="8" />
 
@@ -138,7 +138,6 @@
             android:background="@drawable/num_analysis_border"
             android:padding="10dp"
             android:text="번호 저장하기"
-            android:textColor="@color/material_dynamic_neutral_variant40"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -147,10 +146,9 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_margin="6dp"
-            android:background="@drawable/num_analysis_border"
+            android:background="@drawable/num_analysis_border2"
             android:padding="10dp"
             android:text="저장된 번호 목록"
-            android:textColor="#787878"
             android:textSize="14sp"
             android:textStyle="bold" />
 
