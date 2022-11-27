@@ -12,25 +12,21 @@ import android.widget.Button;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class PurchaseHistoryActivity extends AppCompatActivity {
     DataBaseHelper mDBHelper;
     SQLiteDatabase database;
-    public List<NumberQuery> winninglst;
-
+    int[] temp = {1,3,13,16,17,32};
+    NumberQuery nq = new NumberQuery(1028,"2020",temp);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_history);
-        
-        getWinningData(); // winninglst initialization
-        Collections.reverse(winninglst); // 1회차부터 정렬됨
-
-
+        ArrayList<String> list = new ArrayList<>();
+        for (int i=0; i<100; i++) {
+            list.add(String.format("TEXT %d", i));
+        }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
@@ -38,10 +34,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter();
-
-        ArrayList<PurchaseData> tmp = selectData();
-        bindingWithSticker(); // 스티커랑 같이 묶어줌
-        //adapter.submitData(selectData());
+        adapter.submitData(selectData());
         recyclerView.setAdapter(adapter);
 
 
@@ -61,18 +54,4 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         }
     }
 
-    public void getWinningData(){
-        try{
-            DataAdapter mDA = new DataAdapter(getApplicationContext());
-            mDA.open();
-            winninglst = mDA.getWinningData();
-            mDA.close();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void bindingWithSticker(){
-        
-    }
 }

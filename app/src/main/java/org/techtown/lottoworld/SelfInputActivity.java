@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -30,7 +31,6 @@ public class SelfInputActivity extends AppCompatActivity {
     //  reset 누르면 다 리셋.
 
     // Variable for Spinner UI
-    int latestRound_Temporary = 1029;
     int selected_Round;
     Button resetInputButton,myTicketListButton,saveNumbersButton;
     Spinner roundSpinner;
@@ -67,6 +67,7 @@ public class SelfInputActivity extends AppCompatActivity {
         choosenBall4 = findViewById(R.id.choosenBall4);
         choosenBall5 = findViewById(R.id.choosenBall5);
         choosenBall6 = findViewById(R.id.choosenBall6);
+
 
         adapterSetting();
         buttonSetting();
@@ -105,7 +106,17 @@ public class SelfInputActivity extends AppCompatActivity {
 
     // Function for Setting Spinner Adapter
     public void adapterSetting(){
-        for(int i=latestRound_Temporary;i>=1;i--){
+        LatestRound round = null;
+        {
+            try {
+                round = new LatestRound();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        int latestRound = round.getRound();
+        for(int i=latestRound;i>=1;i--){
             arrayList.add(Integer.toString(i));
         }
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
