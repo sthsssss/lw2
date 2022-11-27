@@ -130,7 +130,7 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <Button
+        <android.widget.Button
             android:id="@+id/saveNum"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -138,18 +138,20 @@
             android:background="@drawable/num_analysis_border"
             android:padding="10dp"
             android:text="번호 저장하기"
-            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
-        <Button
+        <android.widget.Button
             android:id="@+id/madeList"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_margin="6dp"
-            android:background="@drawable/num_analysis_border2"
+            android:background="@drawable/num_analysis_border"
             android:padding="10dp"
             android:text="저장된 번호 목록"
-            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>
