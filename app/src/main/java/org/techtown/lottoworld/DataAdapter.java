@@ -286,7 +286,7 @@ public class DataAdapter
     public ArrayList<PurchaseData> loadDBforPHlist(){
         try  {
             mDb = mDbHelper.getReadableDatabase();
-            String sqlQueryTbl = "SELECT * FROM purchase_history_table;";
+            String sqlQueryTbl = "SELECT * FROM purchase_history_table ORDER BY round DESC;";
             Cursor cursor = null;
 
             // 쿼리 실행
@@ -305,15 +305,17 @@ public class DataAdapter
                 int fourth = cursor.getInt(5);
                 int fifth = cursor.getInt(6);
                 int sixth = cursor.getInt(7);
-                int bn = 11;
                 if(round == prevround) {
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, bn, round, rank));
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
                 }else{
                     prevround = round;
                     //TODO : 102 코드에는 당첨번호가 들어가야됨. -> SELECT FROM tb_lotto_list
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, bn, round, rank));
-                    data.add(new PurchaseData(102, first, second, third, fourth, fifth, sixth, round));
-                }
+                    String sqlWinTbl = "SELECT * FROM tb_lotto_list WHERE round = " + Integer.toString(round) + ";";
+                    Cursor cursor2 = mDb.rawQuery(sqlWinTbl, null);
+                    cursor2.moveToNext();
+                    data.add(new PurchaseData(102, cursor2.getInt(2), cursor2.getInt(3), cursor2.getInt(4), cursor2.getInt(5), cursor2.getInt(6), cursor2.getInt(7), cursor2.getInt(8), prevround,1));
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
+                    }
             }
             return data;
         } catch(Exception e){

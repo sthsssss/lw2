@@ -20,6 +20,7 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/selfInputTable"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resetInput" />
 
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -775,7 +776,7 @@
         android:id="@+id/resetInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/num_analysis_border2"
         android:text="@string/reset_selfInput"
         app:layout_constraintEnd_toEndOf="parent"

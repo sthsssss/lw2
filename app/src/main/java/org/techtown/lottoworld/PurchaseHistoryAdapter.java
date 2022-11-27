@@ -97,8 +97,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
     private ArrayList<PurchaseData> dataSet = new ArrayList();
 
     // view type
-    private int TYPE_STICKER = 101;
-    private int TYPE_LIST = 102;
+    private int TYPE_STICKER = 102;
+    private int TYPE_LIST = 101;
 
     public void submitData(ArrayList<PurchaseData> newData){
         // newData is the selected query from Local DB!
