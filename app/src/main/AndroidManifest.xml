@@ -54,6 +54,12 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
+
+        <activity android:name=".NumGenMain"></activity>
+        <activity android:name=".NumGenCard"></activity>
+        <activity android:name=".NumGenRoulette"></activity>
+        <activity android:name=".NumGenBasic"></activity>
+        <activity android:name=".NumGenBox"></activity>
     </application>
 
 </manifest>

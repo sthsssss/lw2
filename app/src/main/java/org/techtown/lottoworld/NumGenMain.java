@@ -1,4 +1,4 @@
-package org.techtown.lotto_main;
+package org.techtown.lottoworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
