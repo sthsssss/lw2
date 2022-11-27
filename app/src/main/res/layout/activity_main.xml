@@ -19,7 +19,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.158" />
 
-  <Button
+  <android.widget.Button
       android:id="@+id/createLotto"
       android:layout_width="150dp"
       android:layout_height="150dp"
@@ -32,7 +32,7 @@
       app:layout_constraintTop_toBottomOf="@+id/checkWinning"
       app:layout_constraintVertical_bias="0.141" />
 
-  <Button
+  <android.widget.Button
       android:id="@+id/checkWinning"
       android:layout_width="150dp"
       android:layout_height="150dp"
@@ -44,7 +44,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <Button
+  <android.widget.Button
       android:id="@+id/winningHistory"
       android:layout_width="150dp"
       android:layout_height="150dp"
@@ -57,7 +57,7 @@
       app:layout_constraintStart_toEndOf="@+id/checkWinning"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <Button
+  <android.widget.Button
       android:id="@+id/analyzingLotto"
       android:layout_width="150dp"
       android:layout_height="150dp"
