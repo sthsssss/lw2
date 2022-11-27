@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_pressed="true"
+    android:drawable="@drawable/roulette1"
+    android:width="100dp"
+    android:height="100dp"/>
+  <item
+    android:drawable="@drawable/roulette"
+    android:width="100dp"
+    android:height="100dp"/>
+</selector>
