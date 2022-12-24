@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         numsMade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MadeNumListActivity.class);
                 startActivity(intent);
             }
         });
