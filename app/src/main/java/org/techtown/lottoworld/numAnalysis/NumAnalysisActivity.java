@@ -55,8 +55,12 @@ public class NumAnalysisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_num_analysis);
         getNumberQueryList();
 
-        // 번호를 불러오는 코드로 대체될 예정
-        int[] nums = {5, 16, 28, 30, 35, 45, -1};
+
+        Bundle myBundle = getIntent().getExtras();
+
+        int[] nums = myBundle.getIntArray("numData");
+
+        Log.d("cheackingNums", nums[0] + ", " + nums[1]);
 
         winningNum = findViewById(R.id.winningNum);
         total = findViewById(R.id.total);
