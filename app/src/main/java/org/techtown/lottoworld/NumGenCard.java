@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,14 +31,22 @@ public class NumGenCard extends AppCompatActivity {
         setContentView(R.layout.num_gen_card);
 
 //        나머지 부분과 merge 후 주석 해제
-//        Button analysisBtn = findViewById(R.id.analysisBtn);
-//        analysisBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        Button analysisBtn = findViewById(R.id.analysisBtn);
+        analysisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int[] numArray = new int[6];
+                int numCnt = 0;
+                for (int i = 0; i < isTextViewClicked.length; i++) {
+                    if (isTextViewClicked[i]) {
+                        numArray[numCnt] = nums[i];
+                        numCnt++;
+                    }
+                }
 //                Intent numIntent = new Intent(getApplicationContext(), NumAnalysis.class);
-//                numIntent.putExtra("numData", Arrays.copyOfRange(nums, 0, 6));
-//            }
-//        });
+//                numIntent.putExtra("numData", Arrays.copyOfRange(numArray, 0, 6));
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setSoundEffectsEnabled(false);
