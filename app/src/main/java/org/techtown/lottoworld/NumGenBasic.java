@@ -51,7 +51,7 @@ public class NumGenBasic extends AppCompatActivity {
 
         TextView textviewList[] = {textView1, textView2, textView3, textView4, textView5, textView6};
 
-
+//        나머지 부분과 merge 후 주석 해제
         Button analysisBtn = findViewById(R.id.analysisBtn);
         analysisBtn.setOnClickListener(new View.OnClickListener() {
             @Override

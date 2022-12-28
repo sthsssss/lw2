@@ -45,6 +45,8 @@ public class NumGenCard extends AppCompatActivity {
                         numCnt++;
                     }
                 }
+                Log.d("Num_generate",
+                        nums[0]+", " + nums[1]+ ", " + nums[2]+ ", " + nums[3]+ ", " + nums[4] + "," + nums[5]);
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", nums);
                 startActivity(numIntent);
