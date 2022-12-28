@@ -1,9 +1,12 @@
 package org.techtown.lottoworld;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +52,7 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         }
 
         //Sticker Holder Setting
-        private void bindSticker(PurchaseData item){
+        public void bindSticker(PurchaseData item){
             TextView roundSticker = itemView.findViewById(R.id.roundSticker);
             TextView pn1 = itemView.findViewById(R.id.pn1);
             TextView pn2 = itemView.findViewById(R.id.pn2);
@@ -58,8 +61,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView pn5 = itemView.findViewById(R.id.pn5);
             TextView pn6 = itemView.findViewById(R.id.pn6);
             TextView pn7 = itemView.findViewById(R.id.pn7);
-            roundSticker.setText(Integer.toString(item.round));
 
+            roundSticker.setText(Integer.toString(item.round) + " 회");
             pn1.setText(Integer.toString(item.nums[0]));
             pn2.setText(Integer.toString(item.nums[1]));
             pn3.setText(Integer.toString(item.nums[2]));
@@ -70,8 +73,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         }
 
         //List Holder Setting
-        private void bindList(PurchaseData item){
-            CheckBox checkBox = itemView.findViewById(R.id.checkBox);
+        public void bindList(PurchaseData item){
+            Button deleteButton = itemView.findViewById(R.id.deleteButton);
             TextView ranking = itemView.findViewById(R.id.ranking);
             TextView lpn1 = itemView.findViewById(R.id.lpn1);
             TextView lpn2 = itemView.findViewById(R.id.lpn2);
@@ -79,7 +82,10 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn4 = itemView.findViewById(R.id.lpn4);
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
-            ranking.setText(Integer.toString(item.rank));
+
+            if(item.rank == -1) ranking.setText("꽝");
+            else ranking.setText(Integer.toString(item.rank) + "등");
+
             lpn1.setText(Integer.toString(item.nums[0]));
             lpn2.setText(Integer.toString(item.nums[1]));
             lpn3.setText(Integer.toString(item.nums[2]));
@@ -87,8 +93,15 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             lpn5.setText(Integer.toString(item.nums[4]));
             lpn6.setText(Integer.toString(item.nums[5]));
 
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Log.d("D/phadapter",Integer.toString(pos));
+                    dataSet = new PurchaseHistoryActivity().selectData();
+                }
+            });
         }
-
 
     }
 

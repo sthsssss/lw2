@@ -4,35 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bb"
     tools:context=".CheckWinningActivity">
 
     <Button
         android:id="@+id/qrCheckButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="208dp"
+        android:background="@drawable/specialborder"
         android:text="QR확인"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/purchaseHistoryButton"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="224dp"
+        android:background="@drawable/specialborder"
+        android:text="구매이력"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/selfInputButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:background="@drawable/specialborder"
         android:text="수동입력"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/purchaseHistoryButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/qrCheckButton" />
 
-    <Button
-        android:id="@+id/purchaseHistoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="52dp"
-        android:text="구매이력"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selfInputButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,9 @@
 package org.techtown.lottoworld;
 
+import static java.util.Calendar.getInstance;
+
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,22 +19,31 @@ public class LatestRound {
         return round;
     }
     public int calculateWeeks() throws ParseException {
-        Calendar getToday = Calendar.getInstance();
-        getToday.setTime(new Date()); //금일 날짜
-
+        Calendar cmpDate = getInstance();
         String s_date = "2022-08-13";
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(s_date);
-        Calendar cmpDate = Calendar.getInstance();
+
         cmpDate.setTime(date); //특정 일자
+        Calendar getToday = getInstance();
+
+        getToday.setTime(new Date()); //금일 날짜
 
         long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
+        Log.d("checking sec:", String.valueOf(diffSec) );
         long diffDays = diffSec / (24*60*60); //일자수 차이
-        long diffHours = diffSec % (60 * 60 * 24); // 남은 시간
+        Log.d("checking days:", String.valueOf(diffDays) );
 
-        int weeks = (int) diffDays / 7;
-        if(diffDays % 7 == 0 && diffHours <= 22){
-            weeks =- 1;
+        int hour = getInstance().get(Calendar.HOUR_OF_DAY);
+
+        long weeks =  diffDays / 7;
+        Log.d("checking weeks:", String.valueOf(weeks));
+
+        if(diffDays % 7 == 0 && hour <= 23){
+            weeks -= 1;
         }
-        return weeks + 1028;
+
+        Log.d("checking round:", String.valueOf(weeks) + ", hours:" + String.valueOf(hour));
+
+        return (int) weeks + 1028;
     }
 }

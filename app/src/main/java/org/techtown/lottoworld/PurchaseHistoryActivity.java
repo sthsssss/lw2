@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,9 +19,10 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
     NumberQuery nq = new NumberQuery(1028,"2020",temp);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_history);
+
+        Button selectAll,deleteCheck;
         ArrayList<String> list = new ArrayList<>();
         for (int i=0; i<100; i++) {
             list.add(String.format("TEXT %d", i));
@@ -37,7 +37,21 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         adapter.submitData(selectData());
         recyclerView.setAdapter(adapter);
 
+        selectAll = findViewById(R.id.selectAll);
+        deleteCheck = findViewById(R.id.delete);
 
+        selectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        deleteCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public ArrayList<PurchaseData> selectData(){
@@ -54,4 +68,17 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         }
     }
 
+    public ArrayList<PurchaseData> deleteChoosen(int pos){
+        try {
+            ArrayList<PurchaseData> tmpArrayData = new ArrayList<PurchaseData>();
+            DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
+            ph_DbAdapter.open();
+            tmpArrayData = ph_DbAdapter.loadDBforPHlist();
+            ph_DbAdapter.close();
+            return tmpArrayData;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

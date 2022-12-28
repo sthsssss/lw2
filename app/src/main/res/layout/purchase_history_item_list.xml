@@ -2,16 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#DDCFCF"
+    android:background="#4DF3F0F8"
     android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/round_view"
+        android:backgroundTint="#B8B8B8"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:text="-"
+        android:paddingTop="3dp"
+        android:textStyle="bold"
+        android:textColor="@color/white" />
+
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +36,9 @@
         android:gravity="center">
 
         <TableRow
+            android:paddingHorizontal="30dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/num_analysis_border"
             android:layout_width="273dp"
             android:layout_height="match_parent">
 
@@ -33,7 +46,8 @@
                 android:id="@+id/lpn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="11" />
@@ -42,7 +56,8 @@
                 android:id="@+id/lpn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="7" />
@@ -51,7 +66,8 @@
                 android:id="@+id/lpn3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="3" />
@@ -60,7 +76,8 @@
                 android:id="@+id/lpn4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="4" />
@@ -69,7 +86,8 @@
                 android:id="@+id/lpn5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="5" />
@@ -78,7 +96,8 @@
                 android:id="@+id/lpn6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="2" />
