@@ -31,12 +31,20 @@ public class NumGenCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_gen_card);
+
+//        나머지 부분과 merge 후 주석 해제
         Button analysisBtn = findViewById(R.id.analysisBtn);
         analysisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Num_generate",
-                        nums[0]+", " + nums[1]+ ", " + nums[2]+ ", " + nums[3]+ ", " + nums[4] + "," + nums[5]);
+                int[] numArray = new int[6];
+                int numCnt = 0;
+                for (int i = 0; i < isTextViewClicked.length; i++) {
+                    if (isTextViewClicked[i]) {
+                        numArray[numCnt] = nums[i];
+                        numCnt++;
+                    }
+                }
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", nums);
                 startActivity(numIntent);

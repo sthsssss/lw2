@@ -1,5 +1,8 @@
 package org.techtown.lottoworld;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -131,12 +134,37 @@ public class NumGenBasic extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < 6; i++) {
-                    if (i < include.length) {
+                    if (nonNull(include) && nonNull(exclude)) {
+                        if (i < include.length) {
 
-                        // include
-                        nums[i] = include[i];
+                            // include
+                            nums[i] = include[i];
 
-                    } else {
+                        }
+                        else {
+                            nums[i] = rd.nextInt(45) + 1;
+
+                            // exclude
+                            for (int j = 0; j < exclude.length; j++) {
+                                if (nums[i] == exclude[j]) {
+                                    i--;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if (nonNull(include) && isNull(exclude)) {
+                        if (i < include.length) {
+
+                            // include
+                            nums[i] = include[i];
+
+                        }
+                        else {
+                            nums[i] = rd.nextInt(45) + 1;
+                        }
+                    }
+                    else if (isNull(include) && nonNull(exclude)) {
                         nums[i] = rd.nextInt(45) + 1;
 
                         // exclude
@@ -146,16 +174,20 @@ public class NumGenBasic extends AppCompatActivity {
                                 break;
                             }
                         }
+                    }
+                    else {
+                        nums[i] = rd.nextInt(45) + 1;
+                    }
 
-                        // 중복된 수 없애기
-                        for (int j = 0; j < i; j++) {
-                            if (nums[i] == nums[j]) {
-                                i--;
-                                break;
-                            }
+                    // 중복된 수 없애기
+                    for (int j = 0; j < i; j++) {
+                        if (nums[i] == nums[j]) {
+                            i--;
+                            break;
                         }
                     }
                 }
+
 
                 Arrays.sort(nums);
 
@@ -183,18 +215,8 @@ public class NumGenBasic extends AppCompatActivity {
                     inputButtons[i].setBackgroundResource(R.drawable.selfinputbutton);
                 }
 
-                for (int i = 0; i < include.length; i++) {
-                    include[i] = 0;
-                }
-
-                for (int i = 0; i < exclude.length; i++) {
-                    exclude[i] = 0;
-                }
-
-                for (int i = 0; i < nums.length; i++) {
-                    nums[i] = 0;
-                }
-
+                include = null;
+                exclude = null;
             }
         });
 
