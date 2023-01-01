@@ -6,7 +6,7 @@
     android:gravity="center">
 
     <LinearLayout
-        android:layout_width="340dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:background="@drawable/made_item"
@@ -45,5 +45,14 @@
                 android:text="총합: 169 짝홀:1/5" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="42dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/made_sticker"
+        android:text="삭제" />
 
 </LinearLayout>

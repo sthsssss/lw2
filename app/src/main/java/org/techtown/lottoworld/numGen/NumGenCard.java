@@ -49,7 +49,6 @@ public class NumGenCard extends AppCompatActivity {
                         numCnt++;
                     }
                 }
-                makeText(getApplicationContext(), "번호가 저장되었습니다.",Toast.LENGTH_SHORT);
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", numArray);
                 startActivity(numIntent);

@@ -53,8 +53,6 @@ public class NumGenBox extends AppCompatActivity {
         analysisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT);
-
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", nums);
                 startActivity(numIntent);

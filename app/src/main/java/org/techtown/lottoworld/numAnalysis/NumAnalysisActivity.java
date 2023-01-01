@@ -1,5 +1,7 @@
 package org.techtown.lottoworld.numAnalysis;
 
+import static android.widget.Toast.makeText;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.techtown.lottoworld.DataAdapter;
 import org.techtown.lottoworld.NumberQuery;
@@ -255,7 +258,8 @@ public class NumAnalysisActivity extends AppCompatActivity {
 
             // db 닫기
             mDbAdapter.close();
-            Log.d("insertDataNumAnalysis", "성공함");
+            Log.d("insertMadeNum", "성공함");
+            makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT);
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d("insertData", "실패함");

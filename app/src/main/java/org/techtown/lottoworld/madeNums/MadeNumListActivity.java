@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.techtown.lottoworld.DataAdapter;
+import org.techtown.lottoworld.MadeNumQuery;
 import org.techtown.lottoworld.NumberQuery;
 import org.techtown.lottoworld.R;
 
@@ -22,7 +23,7 @@ public class MadeNumListActivity extends AppCompatActivity {
     int pages; // 전체 페이지 수
     int totalItem;
     int page = 0; // 현재 페이지
-    List<NumberQuery> madeQueryList;
+    List<MadeNumQuery> madeQueryList;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -34,7 +35,7 @@ public class MadeNumListActivity extends AppCompatActivity {
 
         getNumberQueryList();
 
-        ArrayList<NumberQuery> listWithSticker = (ArrayList<NumberQuery>) makeSticker();
+        ArrayList<MadeNumQuery> listWithSticker = (ArrayList<MadeNumQuery>) makeSticker();
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
@@ -62,20 +63,23 @@ public class MadeNumListActivity extends AppCompatActivity {
         }
         return round;
     }
-    public List<NumberQuery> makeSticker(){
-        List<NumberQuery> newList = new ArrayList<>();
+    public List<MadeNumQuery> makeSticker(){
+        List<MadeNumQuery> newList = new ArrayList<>();
         String preDate = "1979";
 
         Collections.reverse(madeQueryList);
 
-        for(NumberQuery numberQuery : madeQueryList){
+        for(MadeNumQuery numberQuery : madeQueryList){
             if(!numberQuery.getDate().equals(preDate)){
-                newList.add(new NumberQuery(-1,numberQuery.getDate(),new int[]{0}));
+                newList.add(new MadeNumQuery(-1,numberQuery.getDate(),new int[]{0}));
                 preDate = numberQuery.getDate();
             }
             newList.add(numberQuery);
         }
         return newList;
+    }
+    public void deleteNum(){
+
     }
 
 }
