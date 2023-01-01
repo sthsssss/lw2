@@ -58,8 +58,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView pn5 = itemView.findViewById(R.id.pn5);
             TextView pn6 = itemView.findViewById(R.id.pn6);
             TextView pn7 = itemView.findViewById(R.id.pn7);
-            roundSticker.setText(Integer.toString(item.round));
 
+            roundSticker.setText(Integer.toString(item.round));
             pn1.setText(Integer.toString(item.nums[0]));
             pn2.setText(Integer.toString(item.nums[1]));
             pn3.setText(Integer.toString(item.nums[2]));
@@ -79,7 +79,8 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn4 = itemView.findViewById(R.id.lpn4);
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
-            ranking.setText(Integer.toString(item.rank));
+
+            ranking.setText(Integer.toString(item.rank) + "위");
             lpn1.setText(Integer.toString(item.nums[0]));
             lpn2.setText(Integer.toString(item.nums[1]));
             lpn3.setText(Integer.toString(item.nums[2]));

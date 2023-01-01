@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#DDCFCF"
     android:orientation="horizontal">
 
     <CheckBox
@@ -16,22 +15,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="1st" />
+        android:paddingRight="5dp"
+        android:text="미정" />
 
     <TableLayout
         android:id="@+id/winnigSticker"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
+        android:paddingRight="10dp"
         android:gravity="center">
 
         <TableRow
+            android:background="@drawable/num_analysis_border2"
             android:layout_width="273dp"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/lpn1"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -40,7 +42,7 @@
 
             <TextView
                 android:id="@+id/lpn2"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -49,7 +51,7 @@
 
             <TextView
                 android:id="@+id/lpn3"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -58,7 +60,7 @@
 
             <TextView
                 android:id="@+id/lpn4"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -67,7 +69,7 @@
 
             <TextView
                 android:id="@+id/lpn5"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -76,7 +78,7 @@
 
             <TextView
                 android:id="@+id/lpn6"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"

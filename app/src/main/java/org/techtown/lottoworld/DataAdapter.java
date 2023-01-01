@@ -295,8 +295,6 @@ public class DataAdapter
             ArrayList<PurchaseData> data = new ArrayList();
             int prevround = -1;
             while (cursor.moveToNext()) { // 레코드가 존재한다면
-
-                Log.d("logcheck","into the loadDBfunc");
                 int round = cursor.getInt(0);
                 int rank = cursor.getInt(1);
                 int first = cursor.getInt(2);
@@ -309,10 +307,11 @@ public class DataAdapter
                     data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
                 }else{
                     prevround = round;
-                    //TODO : 102 코드에는 당첨번호가 들어가야됨. -> SELECT FROM tb_lotto_list
+                    //TODO : cursur2 예외처리 해야함
                     String sqlWinTbl = "SELECT * FROM tb_lotto_list WHERE round = " + Integer.toString(round) + ";";
                     Cursor cursor2 = mDb.rawQuery(sqlWinTbl, null);
                     cursor2.moveToNext();
+                    //if()
                     data.add(new PurchaseData(102, cursor2.getInt(2), cursor2.getInt(3), cursor2.getInt(4), cursor2.getInt(5), cursor2.getInt(6), cursor2.getInt(7), cursor2.getInt(8), prevround,1));
                     data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
                     }
