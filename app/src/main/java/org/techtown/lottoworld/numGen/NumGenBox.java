@@ -1,5 +1,7 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numGen;
 
+
+import static android.widget.Toast.makeText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +15,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.techtown.lottoworld.R;
 import org.techtown.lottoworld.numAnalysis.NumAnalysisActivity;
 
 import java.util.Arrays;
@@ -49,8 +53,8 @@ public class NumGenBox extends AppCompatActivity {
         analysisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Num_generate",
-                        nums[0]+", " + nums[1]+ ", " + nums[2]+ ", " + nums[3]+ ", " + nums[4] + "," + nums[5]);
+                makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT);
+
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", nums);
                 startActivity(numIntent);

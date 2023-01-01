@@ -1,4 +1,6 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numGen;
+
+import static android.widget.Toast.makeText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.techtown.lottoworld.R;
 import org.techtown.lottoworld.numAnalysis.NumAnalysisActivity;
 
 import java.util.Arrays;
@@ -37,6 +40,7 @@ public class NumGenCard extends AppCompatActivity {
         analysisBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 int[] numArray = new int[6];
                 int numCnt = 0;
                 for (int i = 0; i < isTextViewClicked.length; i++) {
@@ -45,6 +49,7 @@ public class NumGenCard extends AppCompatActivity {
                         numCnt++;
                     }
                 }
+                makeText(getApplicationContext(), "번호가 저장되었습니다.",Toast.LENGTH_SHORT);
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", numArray);
                 startActivity(numIntent);
@@ -120,13 +125,13 @@ public class NumGenCard extends AppCompatActivity {
                         }, 1000);
                     }
                     else if(isTextViewClicked[tempIndex-1]) {
-                        Toast.makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
                     }
                     else if (!isStarted) {
-                        Toast.makeText(getApplicationContext(), "카드를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "카드를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
                     }
                     else if (TextViewActiveCnt >= 6) {
-                        Toast.makeText(getApplicationContext(), "6개 이상 선택하실 수 없습니다", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "6개 이상 선택하실 수 없습니다", Toast.LENGTH_SHORT).show();
                         isStarted = false;
                     }
                 }

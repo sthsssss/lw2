@@ -32,17 +32,6 @@ public class MadeNumListActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.madeNum);
 
-/*
-        insertData(new NumberQuery(1,"2020-10-12",new int[]{1,2,3,4,5,6}));
-        insertData(new NumberQuery(1,"2020-10-12",new int[]{3,2,3,4,5,6}));
-        insertData(new NumberQuery(1,"2020-10-12",new int[]{4,2,3,4,5,6}));
-
-        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
-        insertData(new NumberQuery(1,"2020-10-13",new int[]{5,2,3,4,5,6}));
-        insertData(new NumberQuery(1,"2020-10-14",new int[]{8,2,3,4,5,6}));
-
- */
-
         getNumberQueryList();
 
         ArrayList<NumberQuery> listWithSticker = (ArrayList<NumberQuery>) makeSticker();
@@ -51,17 +40,11 @@ public class MadeNumListActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        Log.d("MadeNumListAdapter ","시작");
         MadeNumListAdapter adapter = new MadeNumListAdapter();
-
-        Log.d("MadeNumListAdapter ","끝");
 
         adapter.setItems(listWithSticker);
 
-        Log.d("adapter.setItems ","실행");
-
         recyclerView.setAdapter(adapter);
-        Log.d("recyclerView.setAdapter ","실행");
 
     }
     public int getNumberQueryList(){
@@ -95,19 +78,4 @@ public class MadeNumListActivity extends AppCompatActivity {
         return newList;
     }
 
-    public void insertData(NumberQuery wn){
-        try {
-            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
-            mDbAdapter.open();
-
-            mDbAdapter.insertMadeNum(wn);
-
-            // db 닫기
-            mDbAdapter.close();
-            Log.d("insertData WinningData", "성공함");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Log.d("insertData WinningData", "실패함");
-        }
-    }
 }
