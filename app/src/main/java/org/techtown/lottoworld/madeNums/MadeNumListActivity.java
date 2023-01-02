@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import org.techtown.lottoworld.DataAdapter;
 import org.techtown.lottoworld.MadeNumQuery;
@@ -47,6 +49,22 @@ public class MadeNumListActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
+        //리사이클러뷰 클릭 이벤트
+        adapter.setOnItemClickListener (new MadeNumListAdapter.OnItemClickListener() {
+            //삭제
+            @Override
+            public void onDeleteClick(View v, int position) {
+                MadeNumQuery madeNumQuery = listWithSticker.get(position);
+                deleteNum(madeNumQuery.getId());
+                listWithSticker.remove (position);
+                if(listWithSticker.get(position - 1).getId() == -1){
+                    listWithSticker.remove (position - 1);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+        });
+
     }
     public int getNumberQueryList(){
         int round = 0;
@@ -78,8 +96,17 @@ public class MadeNumListActivity extends AppCompatActivity {
         }
         return newList;
     }
-    public void deleteNum(){
+    public void deleteNum(long id){
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
 
+            mDbAdapter.deleteMadeNum(id);
+
+            mDbAdapter.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

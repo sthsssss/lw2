@@ -49,6 +49,7 @@ public class NumGenCard extends AppCompatActivity {
                         numCnt++;
                     }
                 }
+                Arrays.sort(numArray);
                 Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
                 numIntent.putExtra("numData", numArray);
                 startActivity(numIntent);

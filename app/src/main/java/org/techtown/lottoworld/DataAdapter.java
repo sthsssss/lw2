@@ -193,7 +193,18 @@ public class DataAdapter
         Log.d("insertWinningNum()" , query);
         mDb.execSQL(query);
     }
-
+    public int deleteMadeNum(long id){
+        try{
+            mDb = mDbHelper.getWritableDatabase();
+            String sql = "DELETE FROM tb_lotto_made WHERE id = "+ id +";";
+            mDb.execSQL(sql);
+        }catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "deleteMadeNum >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+        return 1;
+    }
 
     public void insertPurchasedNum(int rank,NumberQuery pn){
         mDb = mDbHelper.getWritableDatabase();

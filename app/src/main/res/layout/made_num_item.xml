@@ -48,11 +48,14 @@
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="6dp"
         android:background="@drawable/made_sticker"
-        android:text="삭제" />
+        android:elevation="4dp"
+        android:text="삭제"
+        android:textSize="14sp"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </LinearLayout>

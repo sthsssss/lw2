@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.techtown.lottoworld.MadeNumQuery;
@@ -20,6 +21,16 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
     private int TYPE_STICKER = 201;
     private int TYPE_LIST = 202;
 
+    //아이템 클릭 리스너 인터페이스
+    interface OnItemClickListener{
+        void onDeleteClick(View v, int positon);//삭제
+    }
+    //리스너 객체 참조 변수
+    private OnItemClickListener mListener = null;
+    //리스너 객체 참조를 어댑터에 전달 메서드
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -79,6 +90,20 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
         public ViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             this.viewType = viewType;
+            Button deleteButton = itemView.findViewById(R.id.deleteButton);
+            if(deleteButton != null){
+                deleteButton.setOnClickListener (new View.OnClickListener () {
+                    @Override
+                    public void onClick(View view) {
+                        int position = getAdapterPosition ();
+                        if (position!=RecyclerView.NO_POSITION){
+                            if (mListener!=null){
+                                mListener.onDeleteClick(view,position);
+                            }
+                        }
+                    }
+                });
+            }
         }
 
         public void bind(MadeNumQuery item){
@@ -104,4 +129,5 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
 
         }
     }
+
 }
