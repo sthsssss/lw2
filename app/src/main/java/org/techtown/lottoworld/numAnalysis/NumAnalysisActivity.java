@@ -259,7 +259,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
             // db 닫기
             mDbAdapter.close();
             Log.d("insertMadeNum", "성공함");
-            makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT);
+            makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT).show();
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d("insertData", "실패함");
