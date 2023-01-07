@@ -1,5 +1,7 @@
 package org.techtown.lottoworld.madeNums;
 
+import static android.widget.Toast.makeText;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,18 +56,32 @@ public class MadeNumListActivity extends AppCompatActivity {
             //삭제
             @Override
             public void onDeleteClick(View v, int position) {
+
                 MadeNumQuery madeNumQuery = listWithSticker.get(position);
+                //DB에서 삭제
                 deleteNum(madeNumQuery.getId());
+
                 listWithSticker.remove (position);
-                if(listWithSticker.get(position - 1).getId() == -1){
-                    listWithSticker.remove (position - 1);
-                }
+                //이전 이후 아이템을 확인
+                    if(checkItem(position, listWithSticker)){
+                        listWithSticker.remove (position - 1);
+                    }
                 adapter.notifyDataSetChanged();
             }
-
         });
-
     }
+    private boolean checkItem(int position,ArrayList<MadeNumQuery> listWithSticker) {
+
+        if(listWithSticker.get(position - 1).getId() == -1){
+            if(listWithSticker.size() == position){
+                return true;
+            }else if(listWithSticker.get(position).getId() == -1){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getNumberQueryList(){
         int round = 0;
         try {
@@ -106,6 +122,19 @@ public class MadeNumListActivity extends AppCompatActivity {
             mDbAdapter.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    public void insertData( NumberQuery wn){
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
+            mDbAdapter.insertMadeNum(wn);
+            // db 닫기
+            mDbAdapter.close();
+            Log.d("insertMadeNum", "성공함");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("insertData", "실패함");
         }
     }
 
