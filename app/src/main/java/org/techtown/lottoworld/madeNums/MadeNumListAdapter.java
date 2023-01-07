@@ -10,21 +10,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.techtown.lottoworld.MadeNumQuery;
-import org.techtown.lottoworld.NumberQuery;
 import org.techtown.lottoworld.R;
 
 import java.util.ArrayList;
 
 public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.ViewHolder> {
     ArrayList<MadeNumQuery> items = new ArrayList<MadeNumQuery>();
+
     // view type
-    private int TYPE_STICKER = 201;
+    private int TYPE_DATE = 201;
     private int TYPE_LIST = 202;
 
     //아이템 클릭 리스너 인터페이스
     interface OnItemClickListener{
         void onDeleteClick(View v, int positon);//삭제
     }
+
     //리스너 객체 참조 변수
     private OnItemClickListener mListener = null;
     //리스너 객체 참조를 어댑터에 전달 메서드
@@ -70,7 +71,7 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
     }
 
     private int getViewScr(int viewType){
-        if(viewType == TYPE_STICKER){
+        if(viewType == TYPE_DATE){
             return R.layout.made_num_date;
         }else{
             return R.layout.made_num_item;
@@ -79,7 +80,7 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
     @Override
     public int getItemViewType(int position) {
         if (items.get(position).getId() == -1){
-            return TYPE_STICKER;
+            return TYPE_DATE;
         } else {
             return TYPE_LIST;
         }
@@ -90,6 +91,7 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
         public ViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             this.viewType = viewType;
+
             Button deleteButton = itemView.findViewById(R.id.deleteButton);
             if(deleteButton != null){
                 deleteButton.setOnClickListener (new View.OnClickListener () {
@@ -107,15 +109,13 @@ public class MadeNumListAdapter extends RecyclerView.Adapter<MadeNumListAdapter.
         }
 
         public void bind(MadeNumQuery item){
-            if (viewType==TYPE_STICKER){
-                Log.d("MadeNum ,TYPE_STICKER",item.toString());
-                bindSticker(item);
+            if (viewType== TYPE_DATE){
+                bindDate(item);
             } else if(viewType==TYPE_LIST) {
-                Log.d("MadeNum, TYPE_LIST",item.toString());
                 bindItem(item);
             }
         }
-        private void bindSticker(MadeNumQuery item){
+        private void bindDate(MadeNumQuery item){
             TextView madeDate = itemView.findViewById(R.id.madeDate);
             madeDate.setText(item.getDate());
         }

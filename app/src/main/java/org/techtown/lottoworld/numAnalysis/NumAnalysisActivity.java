@@ -91,7 +91,6 @@ public class NumAnalysisActivity extends AppCompatActivity {
             pages = totalItem / 10;
         }else{  pages = totalItem / 10 + 1; }
 
-
         Button saveButton = findViewById(R.id.saveNum);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +189,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
             case 6 : // 6개 다 맞을 때 1등
                 first.add(wNum);
                 break;
-            case 5: // 보너스 번호를 포함한 경우 2등, 아 경우 3등
+            case 5: // 보너스 번호를 포함한 경우 2등, 아닌 경우 3등
                 if(Arrays.asList(nums).contains(wNum.getNums()[6])){
                     second.add(wNum);
                 }
@@ -232,6 +231,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
         page ++;
 
     }
+    // historyList에 등수와 함께 저장하는 메소드
     public void addWinningNums(){
         for(NumberQuery wn : first){
             historyList.add(new WinningHistory(wn,1));

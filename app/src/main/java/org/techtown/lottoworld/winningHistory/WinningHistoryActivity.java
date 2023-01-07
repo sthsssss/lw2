@@ -60,7 +60,7 @@ public class WinningHistoryActivity extends AppCompatActivity {
                 int totalCount = recyclerView.getAdapter().getItemCount();
 
                 if (lastPosition == totalCount - 1) {
-                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+                    //아이템을 추가하고 다시 새로 고침
                     addNumItem(adapter);
                     adapter.notifyDataSetChanged();
                 }
