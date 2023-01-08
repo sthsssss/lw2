@@ -1,5 +1,7 @@
 package org.techtown.lottoworld.numAnalysis;
 
+import static android.widget.Toast.makeText;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.techtown.lottoworld.DataAdapter;
 import org.techtown.lottoworld.NumberQuery;
@@ -87,7 +90,6 @@ public class NumAnalysisActivity extends AppCompatActivity {
         if(totalItem % 10 == 0){ // 전체 페이지 계산
             pages = totalItem / 10;
         }else{  pages = totalItem / 10 + 1; }
-
 
         Button saveButton = findViewById(R.id.saveNum);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -187,7 +189,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
             case 6 : // 6개 다 맞을 때 1등
                 first.add(wNum);
                 break;
-            case 5: // 보너스 번호를 포함한 경우 2등, 아 경우 3등
+            case 5: // 보너스 번호를 포함한 경우 2등, 아닌 경우 3등
                 if(Arrays.asList(nums).contains(wNum.getNums()[6])){
                     second.add(wNum);
                 }
@@ -229,6 +231,7 @@ public class NumAnalysisActivity extends AppCompatActivity {
         page ++;
 
     }
+    // historyList에 등수와 함께 저장하는 메소드
     public void addWinningNums(){
         for(NumberQuery wn : first){
             historyList.add(new WinningHistory(wn,1));
@@ -255,7 +258,8 @@ public class NumAnalysisActivity extends AppCompatActivity {
 
             // db 닫기
             mDbAdapter.close();
-            Log.d("insertDataNumAnalysis", "성공함");
+            Log.d("insertMadeNum", "성공함");
+            makeText(getApplicationContext(), "번호가 저장되었습니다.", Toast.LENGTH_SHORT).show();
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d("insertData", "실패함");

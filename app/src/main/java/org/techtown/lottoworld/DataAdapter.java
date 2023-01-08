@@ -1,6 +1,7 @@
 package org.techtown.lottoworld;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -113,10 +114,10 @@ public class DataAdapter
             String sql ="SELECT * FROM tb_lotto_made;";
 
             // 모델 넣을 리스트 생성
-            List<NumberQuery> numberQueryList = new ArrayList();
+            List<MadeNumQuery> numberQueryList = new ArrayList();
 
             // TODO : 모델 선언
-            NumberQuery numberQuery = null;
+            MadeNumQuery numberQuery = null;
 
             Cursor mCur = mDb.rawQuery(sql, null);
             if (mCur!=null)
@@ -125,17 +126,18 @@ public class DataAdapter
                 while( mCur.moveToNext() ) {
 
                     // TODO : 커스텀 모델 생성
-                    numberQuery = new NumberQuery();
-                    numberQuery.setRound(0);
+                    numberQuery = new MadeNumQuery();
+                    numberQuery.setId(mCur.getInt(0));
                     // TODO : Record 기술
                     // round, date, 1st, 2nd, 3rd, 4th, 5th, 6th, bonus
-                    numberQuery.setDate(mCur.getString(0));
-                    int first = mCur.getInt(1);
-                    int second = mCur.getInt(2);
-                    int third = mCur.getInt(3);
-                    int fourth = mCur.getInt(4);
-                    int fifth = mCur.getInt(5);
-                    int sixth = mCur.getInt(6);
+                    numberQuery.setDate(mCur.getString(1));
+
+                    int first = mCur.getInt(2);
+                    int second = mCur.getInt(3);
+                    int third = mCur.getInt(4);
+                    int fourth = mCur.getInt(5);
+                    int fifth = mCur.getInt(6);
+                    int sixth = mCur.getInt(7);
                     numberQuery.setNums(new int[]{first,second,third,fourth,fifth,sixth,0});
 
                     // 리스트에 넣기
@@ -190,6 +192,18 @@ public class DataAdapter
                 + nums[5] + "); ";
         Log.d("insertWinningNum()" , query);
         mDb.execSQL(query);
+    }
+    public int deleteMadeNum(long id){
+        try{
+            mDb = mDbHelper.getWritableDatabase();
+            String sql = "DELETE FROM tb_lotto_made WHERE id = "+ id +";";
+            mDb.execSQL(sql);
+        }catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "deleteMadeNum >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+        return 1;
     }
 
     public void insertPurchasedNum(int rank,NumberQuery pn){
