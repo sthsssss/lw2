@@ -51,13 +51,19 @@
         <entry key="..\:/LottoWorld2/app/src/main/res/layout/winning_num_item.xml" value="0.2609375" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2025" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/borderlessobject.xml" value="0.2015" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/made_sticker.xml" value="0.188" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/num_analysis_border.xml" value="0.2025" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/round_view.xml" value="0.2025" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/roundcorner_button.xml" value="0.2025" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/drawable/winning_border.xml" value="0.2025" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_intro.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_purchase_history.xml" value="0.225" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_self_input.xml" value="0.24537037037037038" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/activity_winning_history.xml" value="0.225" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_list.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_sticker.xml" value="0.22" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/purchase_history_item_sticker.xml" value="0.5" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorld2/app/src/main/res/layout/winning_num_item.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/LottoWorldLaptopClone/app/src/main/res/layout/activity_self_input.xml" value="0.3079710144927536" />
       </map>
     </option>

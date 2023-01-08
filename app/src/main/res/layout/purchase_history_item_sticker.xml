@@ -6,38 +6,44 @@
     android:background="@color/teal_800"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/roundSticker"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:gravity="center"
-        android:text="1111 회"
-        android:textColor="#49414A"
-        android:textSize="32sp" />
-
     <LinearLayout
-        android:layout_width="330dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/specialborder"
-        android:layout_marginBottom="8dp"
-        android:gravity="center">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
 
         <TextView
-            android:id="@+id/winnernumber"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/roundSticker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/black"
-            android:text="당첨번호" />
+            android:text="1111"
+            android:textColor="#000000"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 회 당첨번호"
+            android:textColor="#000000"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TableLayout
             android:id="@+id/winnigSticker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="10dp"
             android:gravity="center">
 
             <TableRow
@@ -49,72 +55,64 @@
                     android:id="@+id/pn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="11" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/pn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="7" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/pn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3" />
+                    android:text="미" />
 
                 <TextView
                     android:id="@+id/pn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="4" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/pn5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="5" />
+                    android:text="정" />
 
                 <TextView
                     android:id="@+id/pn6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="2" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/pn7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#FF597B"
-                    android:text="6" />
+                    android:text="" />
             </TableRow>
 
         </TableLayout>

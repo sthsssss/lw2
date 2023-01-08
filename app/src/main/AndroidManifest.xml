@@ -56,10 +56,10 @@
             tools:replace="screenOrientation" />
 
         <activity android:name=".NumGenMain"></activity>
-        <activity android:name=".NumGenCard"></activity>
-        <activity android:name=".NumGenRoulette"></activity>
-        <activity android:name=".NumGenBasic"></activity>
-        <activity android:name=".NumGenBox"></activity>
+        <activity android:name=".numGen.NumGenCard"></activity>
+        <activity android:name=".numGen.NumGenRoulette"></activity>
+        <activity android:name=".numGen.NumGenBasic"></activity>
+        <activity android:name=".numGen.NumGenBox"></activity>
     </application>
 
 </manifest>

@@ -29,21 +29,15 @@ public class LatestRound {
         getToday.setTime(new Date()); //금일 날짜
 
         long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-        Log.d("checking sec:", String.valueOf(diffSec) );
         long diffDays = diffSec / (24*60*60); //일자수 차이
-        Log.d("checking days:", String.valueOf(diffDays) );
 
         int hour = getInstance().get(Calendar.HOUR_OF_DAY);
 
         long weeks =  diffDays / 7;
-        Log.d("checking weeks:", String.valueOf(weeks));
 
         if(diffDays % 7 == 0 && hour <= 23){
             weeks -= 1;
         }
-
-        Log.d("checking round:", String.valueOf(weeks) + ", hours:" + String.valueOf(hour));
-
         return (int) weeks + 1028;
     }
 }

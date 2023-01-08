@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:textAlignment="center"
@@ -12,7 +13,7 @@
     <TextView
         android:id="@+id/numAnaysis"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="26dp"
         android:fontFamily="@font/main_font_bmjua"
         android:text="번호분석"
@@ -121,11 +122,11 @@
         android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
         android:layout_height="420dp"
-        tools:itemCount="8" />
+        tools:itemCount="9" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -134,24 +135,24 @@
             android:id="@+id/saveNum"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_margin="6dp"
+            android:layout_margin="12dp"
             android:background="@drawable/num_analysis_border"
             android:padding="10dp"
             android:text="번호 저장하기"
             android:textColor="?android:attr/textColorSecondary"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <android.widget.Button
             android:id="@+id/madeList"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_margin="6dp"
+            android:layout_margin="12dp"
             android:background="@drawable/num_analysis_border"
             android:padding="10dp"
             android:text="저장된 번호 목록"
             android:textColor="?android:attr/textColorSecondary"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
