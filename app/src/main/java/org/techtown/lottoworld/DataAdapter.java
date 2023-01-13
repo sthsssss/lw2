@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -321,6 +322,18 @@ public class DataAdapter
             cursor = mDb.rawQuery(sqlQueryTbl, null);
             ArrayList<PurchaseData> data = new ArrayList();
             int prevround = -1;
+
+            LatestRound roundz = null;
+            {
+                try {
+                    roundz = new LatestRound();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            int latestRound = roundz.getRound() + 1;
+
             while (cursor.moveToNext()) { // 레코드가 존재한다면
                 Log.d("레코드 존재함","레코드 존재함");
                 int id = cursor.getInt(0);
@@ -339,9 +352,7 @@ public class DataAdapter
                     prevround = round;
                     String sqlWinTbl = "SELECT * FROM tb_lotto_list WHERE round = " + Integer.toString(round) + ";";
                     Cursor cursor2 = mDb.rawQuery(sqlWinTbl, null);
-                    cursor2.moveToNext();
-
-                    if (cursor2 == null) {
+                    if (!cursor2.moveToNext()) {
                         Log.d("커서가 널이다","커서가 널이다");
                         data.add(new PurchaseData(102, 0,0,0,0,0,0,0,round));
                         data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank, id));

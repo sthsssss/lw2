@@ -91,14 +91,26 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
 
             Log.d("스티커",Integer.toString(item.round));
 
-            roundSticker.setText(Integer.toString(item.round));
-            pn1.setText(Integer.toString(item.nums[0]));
-            pn2.setText(Integer.toString(item.nums[1]));
-            pn3.setText(Integer.toString(item.nums[2]));
-            pn4.setText(Integer.toString(item.nums[3]));
-            pn5.setText(Integer.toString(item.nums[4]));
-            pn6.setText(Integer.toString(item.nums[5]));
-            pn7.setText(Integer.toString(item.nums[6]));
+            if(item.nums[0] == 0){
+                //최신회차란 소리
+                roundSticker.setText(Integer.toString(item.round));
+                pn1.setText("");
+                pn2.setText("");
+                pn3.setText("미");
+                pn4.setText("");
+                pn5.setText("정");
+                pn6.setText("");
+                pn7.setText("");
+            }else{
+                roundSticker.setText(Integer.toString(item.round));
+                pn1.setText(Integer.toString(item.nums[0]));
+                pn2.setText(Integer.toString(item.nums[1]));
+                pn3.setText(Integer.toString(item.nums[2]));
+                pn4.setText(Integer.toString(item.nums[3]));
+                pn5.setText(Integer.toString(item.nums[4]));
+                pn6.setText(Integer.toString(item.nums[5]));
+                pn7.setText(Integer.toString(item.nums[6]));
+            }
         }
 
         //List Holder Setting
@@ -112,7 +124,11 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
 
-            ranking.setText(Integer.toString(item.rank) + "위");
+            if(item.rank == -1){
+                ranking.setText("미정");
+            }else{
+                ranking.setText(Integer.toString(item.rank) + "위");
+            }
             lpn1.setText(Integer.toString(item.nums[0]));
             lpn2.setText(Integer.toString(item.nums[1]));
             lpn3.setText(Integer.toString(item.nums[2]));
