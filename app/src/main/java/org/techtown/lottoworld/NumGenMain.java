@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.techtown.lottoworld.numGen.NumGenBasic;
+import org.techtown.lottoworld.numGen.NumGenBox;
+import org.techtown.lottoworld.numGen.NumGenCard;
+import org.techtown.lottoworld.numGen.NumGenRoulette;
+
 public class NumGenMain extends AppCompatActivity {
 
     @Override

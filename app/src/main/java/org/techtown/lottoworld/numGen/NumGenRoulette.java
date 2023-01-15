@@ -1,4 +1,6 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numGen;
+
+import static android.widget.Toast.makeText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,12 +8,16 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.techtown.lottoworld.R;
+import org.techtown.lottoworld.numAnalysis.NumAnalysisActivity;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -33,16 +39,15 @@ public class NumGenRoulette extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_gen_roulette);
-
-//        나머지 부분과 merge 후 주석 해제
-//        Button analysisBtn = findViewById(R.id.analysisBtn);
-//        analysisBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent numIntent = new Intent(getApplicationContext(), NumAnalysis.class);
-//                numIntent.putExtra("numData", nums);
-//            }
-//        });
+        Button analysisBtn = findViewById(R.id.analysisBtn);
+        analysisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                numIntent.putExtra("numData", nums);
+                startActivity(numIntent);
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

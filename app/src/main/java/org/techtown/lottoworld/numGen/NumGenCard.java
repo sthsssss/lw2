@@ -1,4 +1,6 @@
-package org.techtown.lottoworld;
+package org.techtown.lottoworld.numGen;
+
+import static android.widget.Toast.makeText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +10,14 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.techtown.lottoworld.R;
+import org.techtown.lottoworld.numAnalysis.NumAnalysisActivity;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -30,14 +36,25 @@ public class NumGenCard extends AppCompatActivity {
         setContentView(R.layout.num_gen_card);
 
 //        나머지 부분과 merge 후 주석 해제
-//        Button analysisBtn = findViewById(R.id.analysisBtn);
-//        analysisBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent numIntent = new Intent(getApplicationContext(), NumAnalysis.class);
-//                numIntent.putExtra("numData", Arrays.copyOfRange(nums, 0, 6));
-//            }
-//        });
+        Button analysisBtn = findViewById(R.id.analysisBtn);
+        analysisBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int[] numArray = new int[6];
+                int numCnt = 0;
+                for (int i = 0; i < isTextViewClicked.length; i++) {
+                    if (isTextViewClicked[i]) {
+                        numArray[numCnt] = nums[i];
+                        numCnt++;
+                    }
+                }
+                Arrays.sort(numArray);
+                Intent numIntent = new Intent(getApplicationContext(), NumAnalysisActivity.class);
+                numIntent.putExtra("numData", numArray);
+                startActivity(numIntent);
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setSoundEffectsEnabled(false);
@@ -108,13 +125,13 @@ public class NumGenCard extends AppCompatActivity {
                         }, 1000);
                     }
                     else if(isTextViewClicked[tempIndex-1]) {
-                        Toast.makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "한 번 선택한 카드는 다시 선택할 수 없습니다", Toast.LENGTH_SHORT).show();
                     }
                     else if (!isStarted) {
-                        Toast.makeText(getApplicationContext(), "카드를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "카드를 먼저 섞어주세요", Toast.LENGTH_SHORT).show();
                     }
                     else if (TextViewActiveCnt >= 6) {
-                        Toast.makeText(getApplicationContext(), "6개 이상 선택하실 수 없습니다", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(), "6개 이상 선택하실 수 없습니다", Toast.LENGTH_SHORT).show();
                         isStarted = false;
                     }
                 }

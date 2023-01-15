@@ -115,7 +115,7 @@ public class SelfInputActivity extends AppCompatActivity {
             }
         }
 
-        int latestRound = round.getRound();
+        int latestRound = round.getRound() + 1;
         for(int i=latestRound;i>=1;i--){
             arrayList.add(Integer.toString(i));
         }
@@ -216,10 +216,25 @@ public class SelfInputActivity extends AppCompatActivity {
     // 저장하기 버튼 누르면..
     public void saveSelfInput(NumberQuery nq){
         try {
-            Toast.makeText(getApplicationContext(),"into the func",Toast.LENGTH_LONG).show();
+            Log.d("saveSelfInput","You pushed button");
+            LatestRound round = null;
+            {
+                try {
+                    round = new LatestRound();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
             DataAdapter si_DbAdapter = new DataAdapter(getApplicationContext());
             si_DbAdapter.open();
-            int rank = si_DbAdapter.getRank(nq.round, nq.nums);
+            int rank;
+            if(nq.round == round.getRound() + 1){
+                rank = -1;
+                Toast.makeText(getApplicationContext(),"최신회차 저장 rank = -1",Toast.LENGTH_LONG).show();
+            }
+            else{
+                rank = si_DbAdapter.getRank(nq.round, nq.nums);
+            }
             Log.d("in that function",Integer.toString(rank));
             si_DbAdapter.insertPurchasedNum(rank,nq);
             si_DbAdapter.close();

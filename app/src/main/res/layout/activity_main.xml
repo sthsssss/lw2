@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bb"
     tools:context=".MainActivity">
 
   <TextView
@@ -11,7 +12,9 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:gravity="center"
-      android:text="메인 임시버튼 추가"
+      android:text="Lotto World"
+      android:textColor="@color/white"
+      android:textSize="60sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.498"
@@ -25,6 +28,7 @@
       android:layout_height="150dp"
       android:layout_marginStart="48dp"
       android:background="@drawable/borderlessobject"
+      android:drawableTop="@drawable/icon_gen"
       android:elevation="10dp"
       android:text="번호생성"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +43,7 @@
       android:layout_marginStart="48dp"
       android:layout_marginTop="350dp"
       android:background="@drawable/borderlessobject"
+      android:drawableTop="@drawable/icon_check"
       android:elevation="10dp"
       android:text="당첨확인"
       app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +55,7 @@
       android:layout_height="150dp"
       android:layout_marginTop="350dp"
       android:background="@drawable/borderlessobject"
+      android:drawableTop="@drawable/icon_winning"
       android:elevation="10dp"
       android:text="과거당첨"
       app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +68,7 @@
       android:layout_width="150dp"
       android:layout_height="150dp"
       android:background="@drawable/borderlessobject"
+      android:drawableTop="@drawable/icon_made"
       android:elevation="10dp"
       android:text="저장번호"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -72,115 +79,104 @@
       app:layout_constraintVertical_bias="0.141" />
 
   <TextView
-      android:id="@+id/latestWinningNoBonus"
-      android:layout_width="35dp"
-      android:layout_height="35dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="260dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
-      android:gravity="center"
-      android:textColor="#FFFFFF"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/latestWinningNo6"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <TextView
-      android:id="@+id/latestWinningNo2"
+      android:id="@+id/latestWinningNo1"
       android:layout_width="45dp"
       android:layout_height="45dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="252dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
+      android:background="@drawable/ballred"
       android:gravity="center"
       android:textColor="#FFFFFF"
-      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo3"
+      app:layout_constraintBottom_toTopOf="@+id/checkWinning"
+      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo2"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/latestWinningNo1"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <TextView
-      android:id="@+id/latestWinningNo3"
-      android:layout_width="45dp"
-      android:layout_height="45dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="252dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
-      android:gravity="center"
-      android:textColor="#FFFFFF"
-      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo4"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/latestWinningNo2"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
 
   <TextView
       android:id="@+id/latestWinningNo4"
       android:layout_width="45dp"
       android:layout_height="45dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="252dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
+      android:background="@drawable/ballgreen"
       android:gravity="center"
       android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toTopOf="@+id/winningHistory"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNo5"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo3"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
 
   <TextView
-      android:id="@+id/latestWinningNo5"
-      android:layout_width="45dp"
-      android:layout_height="45dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="252dp"
+      android:id="@+id/latestWinningNoBonus"
+      android:layout_width="35dp"
+      android:layout_height="35dp"
       android:background="@drawable/round_view"
       android:backgroundTint="@color/black"
       android:gravity="center"
       android:textColor="#FFFFFF"
-      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo6"
+      app:layout_constraintBottom_toTopOf="@+id/winningHistory"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/latestWinningNo4"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintStart_toEndOf="@+id/latestWinningNo6"
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
+
+  <TextView
+      android:id="@+id/latestWinningNo2"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:background="@drawable/ballred"
+      android:gravity="center"
+      android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toTopOf="@+id/checkWinning"
+      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo3"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/latestWinningNo1"
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
 
   <TextView
       android:id="@+id/latestWinningNo6"
       android:layout_width="45dp"
       android:layout_height="45dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="252dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
+      android:background="@drawable/ballpur"
       android:gravity="center"
       android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toTopOf="@+id/winningHistory"
       app:layout_constraintEnd_toStartOf="@+id/latestWinningNoBonus"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/latestWinningNo5"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
 
   <TextView
-      android:id="@+id/latestWinningNo1"
+      android:id="@+id/latestWinningNo3"
       android:layout_width="45dp"
       android:layout_height="45dp"
-      android:layout_marginTop="252dp"
-      android:background="@drawable/round_view"
-      android:backgroundTint="@color/black"
+      android:background="@drawable/ballgreen"
       android:gravity="center"
       android:textColor="#FFFFFF"
-      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo2"
+      app:layout_constraintBottom_toTopOf="@+id/checkWinning"
+      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo4"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintStart_toEndOf="@+id/latestWinningNo2"
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
+
+  <TextView
+      android:id="@+id/latestWinningNo5"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:background="@drawable/ballpur"
+      android:gravity="center"
+      android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toTopOf="@+id/winningHistory"
+      app:layout_constraintEnd_toStartOf="@+id/latestWinningNo6"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/latestWinningNo4"
+      app:layout_constraintTop_toBottomOf="@+id/roundMain" />
 
   <TextView
       android:id="@+id/roundMain"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="48dp"
-      android:textSize="20sp"
+      android:layout_marginTop="36dp"
+      android:textColor="@color/white"
+      android:textSize="34sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.498"
       app:layout_constraintStart_toStartOf="parent"

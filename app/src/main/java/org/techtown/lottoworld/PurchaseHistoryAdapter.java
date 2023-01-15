@@ -1,17 +1,31 @@
 package org.techtown.lottoworld;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.techtown.lottoworld.madeNums.MadeNumListAdapter;
+
 import java.util.ArrayList;
 
 public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistoryAdapter.ViewHolder> {
     private ArrayList<String> mData = null;
+    interface OnItemClickListener{
+        void onDeleteClick(View v, int positon);//삭제
+    }
+
+    //리스너 객체 참조 변수
+    private OnItemClickListener mListener = null;
+    //리스너 객체 참조를 어댑터에 전달 메서드
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
 
     @Override
     public PurchaseHistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,6 +52,21 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
         public ViewHolder(View itemView, int viewType){
             super(itemView);
             this.viewType = viewType;
+
+            Button pdeleteButton = itemView.findViewById(R.id.pdeleteButton);
+            if(pdeleteButton != null){
+                pdeleteButton.setOnClickListener (new View.OnClickListener () {
+                    @Override
+                    public void onClick(View view) {
+                        int position = getAdapterPosition ();
+                        if (position!=RecyclerView.NO_POSITION){
+                            if (mListener!=null){
+                                mListener.onDeleteClick(view,position);
+                            }
+                        }
+                    }
+                });
+            }
         }
 
         public void bind(PurchaseData item){
@@ -58,20 +87,35 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView pn5 = itemView.findViewById(R.id.pn5);
             TextView pn6 = itemView.findViewById(R.id.pn6);
             TextView pn7 = itemView.findViewById(R.id.pn7);
-            roundSticker.setText(Integer.toString(item.round));
 
-            pn1.setText(Integer.toString(item.nums[0]));
-            pn2.setText(Integer.toString(item.nums[1]));
-            pn3.setText(Integer.toString(item.nums[2]));
-            pn4.setText(Integer.toString(item.nums[3]));
-            pn5.setText(Integer.toString(item.nums[4]));
-            pn6.setText(Integer.toString(item.nums[5]));
-            pn7.setText(Integer.toString(item.nums[6]));
+
+            Log.d("스티커",Integer.toString(item.round));
+
+            if(item.nums[0] == 0){
+                //최신회차란 소리
+                roundSticker.setText(Integer.toString(item.round));
+                pn1.setText("");
+                pn2.setText("");
+                pn3.setText("미");
+                pn4.setText("");
+                pn5.setText("정");
+                pn6.setText("");
+                pn7.setText("");
+            }else{
+                roundSticker.setText(Integer.toString(item.round));
+                pn1.setText(Integer.toString(item.nums[0]));
+                pn2.setText(Integer.toString(item.nums[1]));
+                pn3.setText(Integer.toString(item.nums[2]));
+                pn4.setText(Integer.toString(item.nums[3]));
+                pn5.setText(Integer.toString(item.nums[4]));
+                pn6.setText(Integer.toString(item.nums[5]));
+                pn7.setText(Integer.toString(item.nums[6]));
+            }
         }
 
         //List Holder Setting
         private void bindList(PurchaseData item){
-            CheckBox checkBox = itemView.findViewById(R.id.checkBox);
+            Button dbutton = itemView.findViewById(R.id.deleteButton);
             TextView ranking = itemView.findViewById(R.id.ranking);
             TextView lpn1 = itemView.findViewById(R.id.lpn1);
             TextView lpn2 = itemView.findViewById(R.id.lpn2);
@@ -79,7 +123,12 @@ public class PurchaseHistoryAdapter extends RecyclerView.Adapter<PurchaseHistory
             TextView lpn4 = itemView.findViewById(R.id.lpn4);
             TextView lpn5 = itemView.findViewById(R.id.lpn5);
             TextView lpn6 = itemView.findViewById(R.id.lpn6);
-            ranking.setText(Integer.toString(item.rank));
+
+            if(item.rank == -1){
+                ranking.setText("미정");
+            }else{
+                ranking.setText(Integer.toString(item.rank) + "위");
+            }
             lpn1.setText(Integer.toString(item.nums[0]));
             lpn2.setText(Integer.toString(item.nums[1]));
             lpn3.setText(Integer.toString(item.nums[2]));
