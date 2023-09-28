@@ -13,7 +13,7 @@
     </item>
     <item
         android:drawable="@drawable/icon_check_file"
-        android:width="60dp"
+        android:width="70dp"
         android:height="60dp"
         android:gravity="bottom|center_horizontal"
         />
