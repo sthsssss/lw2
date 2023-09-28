@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import org.techtown.lottoworld.madeNums.MadeNumListAdapter;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,40 +25,39 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_history);
 
-        Button selectAll,deleteCheck;
-        ArrayList<String> list = new ArrayList<>();
-        for (int i=0; i<100; i++) {
-            list.add(String.format("TEXT %d", i));
-        }
-
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView recyclerView = findViewById(R.id.recyclerView_ph);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         PurchaseHistoryAdapter adapter = new PurchaseHistoryAdapter();
-        adapter.submitData(selectData());
+        ArrayList<PurchaseData> myList = selectData();
+        adapter.submitData(myList);
         recyclerView.setAdapter(adapter);
 
-        selectAll = findViewById(R.id.selectAll);
-        deleteCheck = findViewById(R.id.delete);
-
-        selectAll.setOnClickListener(new View.OnClickListener() {
+        //리사이클러뷰 클릭 이벤트
+        adapter.setOnItemClickListener(new PurchaseHistoryAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-            }
-        });
-
-        deleteCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+            public void onDeleteClick(View v, int position) {
+                PurchaseData purchaseData = myList.get(position);
+                deleteNum(purchaseData.id);
+                myList.remove(position);
+                if(myList.get(position - 1).type == 102){
+                    if(myList.size() == position)
+                    {
+                        myList.remove(position - 1);
+                    }else if(myList.get(position).type == 102){
+                        myList.remove(position - 1);
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         });
     }
 
     public ArrayList<PurchaseData> selectData(){
         try {
+            Log.d("purchasedhistory","into the selectData()");
             ArrayList<PurchaseData> tmpArrayData = new ArrayList<PurchaseData>();
             DataAdapter ph_DbAdapter = new DataAdapter(getApplicationContext());
             ph_DbAdapter.open();
@@ -79,6 +81,19 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void deleteNum(int id){
+        try {
+            DataAdapter mDbAdapter = new DataAdapter(getApplicationContext());
+            mDbAdapter.open();
+
+            mDbAdapter.deletePurchasedNum(id);
+
+            mDbAdapter.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

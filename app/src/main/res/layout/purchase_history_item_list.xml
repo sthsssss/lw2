@@ -4,11 +4,14 @@
     android:layout_height="50dp"
     android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/pdeleteButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@android:drawable/ic_delete"
+        android:backgroundTint="#808080" />
 
     <TextView
         android:id="@+id/ranking"

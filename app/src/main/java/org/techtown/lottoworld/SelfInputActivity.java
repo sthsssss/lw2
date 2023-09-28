@@ -216,6 +216,7 @@ public class SelfInputActivity extends AppCompatActivity {
     // 저장하기 버튼 누르면..
     public void saveSelfInput(NumberQuery nq){
         try {
+            Log.d("saveSelfInput","You pushed button");
             LatestRound round = null;
             {
                 try {

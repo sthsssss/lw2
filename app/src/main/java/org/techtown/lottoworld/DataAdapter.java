@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -206,6 +207,19 @@ public class DataAdapter
         return 1;
     }
 
+    public int deletePurchasedNum(long id){
+        try{
+            mDb = mDbHelper.getWritableDatabase();
+            String sql = "DELETE FROM purchase_history_table WHERE id = "+ id +";";
+            mDb.execSQL(sql);
+        }catch (SQLException mSQLException)
+        {
+            Log.e(TAG, "deletePurchasedNum >>"+ mSQLException.toString());
+            throw mSQLException;
+        }
+        return 1;
+    }
+
     public void insertPurchasedNum(int rank,NumberQuery pn){
         mDb = mDbHelper.getWritableDatabase();
         int[] nums = pn.getNums();
@@ -308,27 +322,48 @@ public class DataAdapter
             cursor = mDb.rawQuery(sqlQueryTbl, null);
             ArrayList<PurchaseData> data = new ArrayList();
             int prevround = -1;
+
+            LatestRound roundz = null;
+            {
+                try {
+                    roundz = new LatestRound();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            int latestRound = roundz.getRound() + 1;
+
             while (cursor.moveToNext()) { // 레코드가 존재한다면
-                int round = cursor.getInt(0);
-                int rank = cursor.getInt(1);
-                int first = cursor.getInt(2);
-                int second = cursor.getInt(3);
-                int third = cursor.getInt(4);
-                int fourth = cursor.getInt(5);
-                int fifth = cursor.getInt(6);
-                int sixth = cursor.getInt(7);
+                Log.d("레코드 존재함","레코드 존재함");
+                int id = cursor.getInt(0);
+                int round = cursor.getInt(1);
+                int rank = cursor.getInt(2);
+                int first = cursor.getInt(3);
+                int second = cursor.getInt(4);
+                int third = cursor.getInt(5);
+                int fourth = cursor.getInt(6);
+                int fifth = cursor.getInt(7);
+                int sixth = cursor.getInt(8);
                 if(round == prevround) {
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
-                }else{
+                    Log.d("데이터넣기 리스트 1:",first+" 2:"+second+" 3:"+third+" 4:"+fourth+" 5"+fifth+" 6:"+sixth+" rank:"+rank +" round:"+round+" id:"+id);
+                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank, id));
+                }else {
                     prevround = round;
-                    //TODO : cursur2 예외처리 해야함
                     String sqlWinTbl = "SELECT * FROM tb_lotto_list WHERE round = " + Integer.toString(round) + ";";
                     Cursor cursor2 = mDb.rawQuery(sqlWinTbl, null);
-                    cursor2.moveToNext();
-                    //if()
-                    data.add(new PurchaseData(102, cursor2.getInt(2), cursor2.getInt(3), cursor2.getInt(4), cursor2.getInt(5), cursor2.getInt(6), cursor2.getInt(7), cursor2.getInt(8), prevround,1));
-                    data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank));
+                    if (!cursor2.moveToNext()) {
+                        Log.d("커서가 널이다","커서가 널이다");
+                        data.add(new PurchaseData(102, 0,0,0,0,0,0,0,round));
+                        data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank, id));
+
+                    } else {
+                        data.add(new PurchaseData(102, cursor2.getInt(2), cursor2.getInt(3), cursor2.getInt(4), cursor2.getInt(5), cursor2.getInt(6), cursor2.getInt(7), cursor2.getInt(8), prevround));
+                        data.add(new PurchaseData(101, first, second, third, fourth, fifth, sixth, round, rank, id));
+
+                        Log.d("데이터넣기 스티커 1:", first + " 2:" + second + " 3:" + third + " 4:" + fourth + " 5" + fifth + " 6:" + sixth + " rank:" + rank + " round:" + round + " id:" + id);
                     }
+                }
             }
             return data;
         } catch(Exception e){
